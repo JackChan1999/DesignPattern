@@ -1,6 +1,6 @@
 # Summary
 
-* [前言](READM.md)
+* [前言](README.md)
 * [迈出从3K到1W的重要一步——掌握设计模式](design-pattern/迈出从3K到1W的重要一步——掌握设计模式.md)
 * [设计模式中类的关系](design-pattern/设计模式中类的关系.md)
 * [谈一谈自己对依赖、关联、聚合和组合之间区别的理解](design-pattern/谈一谈自己对依赖、关联、聚合和组合之间区别的理解.md)
@@ -39,3 +39,4 @@
   * [享元模式](design-pattern/享元模式.md)
   * [装饰者模式](design-pattern/装饰者模式.md)
   * [MVC、MVP、MVVM设计模式的比较](design-pattern/MVC、MVP、MVVM设计模式的比较.md)
+
