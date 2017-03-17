@@ -20,6 +20,7 @@
 Android中经常会出现数千行的Activity代码，究其原因，Android中纯粹作为View的各个XML视图功能太弱，Activity基本上都是View和Controller的合体，既要负责视图的显示又要加入控制逻辑，承担的功能过多，代码量大也就不足为奇。所以更贴切的目前常规的开发说应该是View-Model 模式，大部分都是通过Activity的协调，连接，和处理逻辑的
 
 Activity中存在两部分内容：业务相关和界面相关，V中的内容较少，而C中的内容较多
+
 解决方案：将Activity中的业务部分拆分----MVP，将Activity中的界面部分拆分----MVVM
 
 ## 1.2 案例分析
