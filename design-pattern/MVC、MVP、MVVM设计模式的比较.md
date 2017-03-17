@@ -1,5 +1,5 @@
-# 1. MVC设计模式
-## 1.1 概述
+## 1. MVC设计模式
+### 1.1 概述
 
 ![mvc](http://img.blog.csdn.net/20160920144040723)
 
@@ -23,7 +23,7 @@ Activity中存在两部分内容：业务相关和界面相关，V中的内容�
 
 解决方案：将Activity中的业务部分拆分----MVP，将Activity中的界面部分拆分----MVVM
 
-## 1.2 案例分析
+### 1.2 案例分析
 Android中的ListView就用到了MVC设计模式
 
 - M：数据的集合，List<UserInfo>
@@ -32,7 +32,7 @@ Android中的ListView就用到了MVC设计模式
 
 而Activity控制层和视图层都有
 
-# 2. MVP设计模式
+## 2. MVP设计模式
 ![mvp模式](http://img.blog.csdn.net/20160920145902825)
 
 | 意义        | 说明                               |
@@ -61,11 +61,11 @@ MVP模式是MVC模式的一个演化版本，MVP全称Model-View-Presenter。目
 
 将activity中的界面相关内容拆分—mvvm
 
-# 2.1 使用MVP的好处
+## 2.1 使用MVP的好处
 MVP模式会解除View与Model的耦合，有效的降低View的复杂性。同时又带来了良好的可扩展性、可测试性，保证系统的整洁性和灵活性。
 
 MVP模式可以分离显示层与逻辑层，它们之间通过接口进行通信，降低耦合。理想化的MVP模式可以实现同一份逻辑代码搭配不同的显示界面，因为它们之间并不依赖于具体，而是依赖于抽象。这使得Presenter可以运用于任何实现了View逻辑接口的UI，使之具有更广泛的适用性，保证了灵活度。
-# 2.2 MVP模式的三个角色
+## 2.2 MVP模式的三个角色
 - Presenter – 交互中间人
 
 Presenter主要作为沟通View与Model的桥梁，它从Model层检索数据后，返回给View层，使得View与Model之间没有耦合，也将业务逻辑从View角色上抽离出来。负责完成View于Model间的交互和业务逻辑
@@ -78,7 +78,7 @@ View通常是指Activity、Fragment或者某个View控件，它含有一个Prese
 
 Model 角色主要是提供数据的存取功能。Presenter 需要通过Model层存储、获取数据，Model就像一个数据仓库。更直白的说，Model是封装了数据库DAO或者网络获取数据的角色，或者两种数据方式获取的集合。
 
-# 3. MVVM设计模式
+## 3. MVVM设计模式
 ![mvvm模式](http://img.blog.csdn.net/20160920145924309)
 
 | 意义        | 说明                                       |

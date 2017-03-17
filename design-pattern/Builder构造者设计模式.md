@@ -1,9 +1,9 @@
-# **1. 概述**
+## **1. 概述**
 建造者模式将客户端与包含多个组成部分的复杂对象的创建过程分离，客户端压根不用知道复杂对象的内部组成部分与装配方式，只需要知道所需建造者的类型即可。它关注如何一步一步创建一个的复杂对象，不同的具体建造者定义了不同的创建过程，且具体建造者相互独立，增加新的建造者非常方便，无须修改已有代码，系统具有较好的扩展性。
 
 ![builder建造者模式](http://img.blog.csdn.net/20160922213148310)
 
-# 2. 建造者模式和抽象工厂模式的区别
+## 2. 建造者模式和抽象工厂模式的区别
 
 其实，在建造者模式里有个指导者，由指导者来管理建造者，用户是与指导者联系的，指导者联系建造者最后得到产品。即建造模式可以强制实行一种分步骤进行的建造过程。而抽象工厂模式不具备最终的这个直接创建功能。建造者模式与工厂模式是极为相似的，总体上，建造者模式仅仅只比工厂模式多了一个“导演类”的角色。假如把这个导演类看做是最终调用的客户端，那么剩余的部分就可以看作是一个简单的工厂模式了。
 
@@ -11,7 +11,7 @@
 
 也就是说，工厂模式是将对象的全部创建过程封装在工厂类中，由工厂类向客户端提供最终的产品；而建造者模式中，建造者类一般只提供产品类中各个组件的建造，而将具体建造过程交付给导演类。由导演类负责将各个组件按照特定的规则组建为产品，然后将组建好的产品交付给客户端。
 
-# **3. 四个要素**
+## **3. 四个要素**
 概念： 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。建造者模式是一种对象创建型模式。
 
 重点： 建造者模式结构重要核心模块：
@@ -104,8 +104,8 @@ public class NutritionFacts {
 }
 
 ```
-# 4. 经典案例
-## 4.1 AlertDialog
+## 4. 经典案例
+### 4.1 AlertDialog
 
 ```java
 AlertDialog dialog = new AlertDialog.Builder(this)
@@ -116,7 +116,7 @@ AlertDialog dialog = new AlertDialog.Builder(this)
                 .create();
 ```
 
-## 4.2 Notification
+### 4.2 Notification
 
 ```java
 Notification notification = new Notification.Builder(this)
@@ -126,7 +126,7 @@ Notification notification = new Notification.Builder(this)
                 .build();
 ```
 
-## 4.3 Okhttp
+### 4.3 Okhttp
 
 ```java
 OkHttpClient client = new OkHttpClient.Builder()
@@ -144,7 +144,7 @@ Request request = new Request.Builder()
                 .build();
 ```
 
-## 4.4 Retrofit
+### 4.4 Retrofit
 
 ```java
 Retrofit retrofit = new Retrofit.Builder()
