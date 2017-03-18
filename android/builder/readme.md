@@ -1,20 +1,20 @@
-Android设计模式源码解析之Builder模式 
-====================================
+# Android设计模式源码解析之Builder模式 
+
 > 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 Builder模式 分析  
 > Android系统版本： 2.3        
 > 分析者：[Mr.Simple](https://github.com/bboyfeiyu)，分析状态：完成，校对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：完成   
- 
+
 
 ## 1. 模式介绍  
- 
-###  模式的定义
+
+###  1.1 模式的定义
 将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
 
-### 模式的使用场景
+### 1.2 模式的使用场景
 1. 相同的方法，不同的执行顺序，产生不同的事件结果时；   
 2. 多个部件或零件，都可以装配到一个对象中，但是产生的运行结果又不相同时；
 3. 产品类非常复杂，或者产品类中的调用顺序不同产生了不同的效能，这个时候使用建造者模式非常合适；
- 
+
 
 ## 2. UML类图
 ![url](images/builder-uml.png)  
@@ -193,12 +193,12 @@ public class Test {
 		System.out.println("Computer Info : " + builder.create().toString());
 	}
 }
-```    
+```
 
 通过Builder来构建产品对象, 而Director封装了构建复杂产品对象对象的过程，不对外隐藏构建细节。
 
 
-## Android源码中的模式实现
+## 4. Android源码中的模式实现
 在Android源码中，我们最常用到的Builder模式就是AlertDialog.Builder， 使用该Builder来构建复杂的AlertDialog对象。简单示例如下 : 
 
 ```java
@@ -342,7 +342,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
     }
     
 }
-``` 
+```
 可以看到，通过Builder来设置AlertDialog中的title, message, button等参数， 这些参数都存储在类型为AlertController.AlertParams的成员变量P中，AlertController.AlertParams中包含了与之对应的成员变量。在调用Builder类的create函数时才创建AlertDialog, 并且将Builder成员变量P中保存的参数应用到AlertDialog的mAlert对象中，即P.apply(dialog.mAlert)代码段。我们看看apply函数的实现 : 
 
 ```java
@@ -398,9 +398,7 @@ public class AlertDialog extends Dialog implements DialogInterface {
 ```
 实际上就是把P中的参数挨个的设置到AlertController中， 也就是AlertDialog中的mAlert对象。从AlertDialog的各个setter方法中我们也可以看到，实际上也都是调用了mAlert对应的setter方法。在这里，Builder同时扮演了上文中提到的builder、ConcreteBuilder、Director的角色，简化了Builder模式的设计。       
 
-
-
-## 4. 杂谈
+## 5. 杂谈
 ### 优点与缺点
 #### 优点  
 * 良好的封装性， 使用建造者模式可以使客户端不必知道产品内部组成的细节；

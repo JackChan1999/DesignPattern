@@ -1,11 +1,11 @@
-Android设计模式源码解析之策略模式 
-====================================
+# Android设计模式源码解析之策略模式
+
 > 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework/android_design_patterns_analysis) 中策略模式分析  
 > Android系统版本：4.4.2         
 > 分析者：[GKerison](https://github.com/GKerison)，分析状态：已完成，校对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：完成   
 
 ## 1. 模式介绍  
- 
+
 ###  模式的定义
 **策略模式定义了一系列的算法，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。**
 
@@ -15,7 +15,6 @@ Android设计模式源码解析之策略模式
 * 针对同一类型问题的多种处理方式，仅仅是具体行为有差别时。
 * 需要安全的封装多种同一类型的操作时。
 * 出现同一抽象多个子类，而又需要使用if-else 或者 switch-case来选择时。
- 
 
 ## 2. UML类图
 ![url](images/strategy-kerison-uml.png)  
@@ -24,8 +23,6 @@ Android设计模式源码解析之策略模式
 * Context：用来操作策略的上下文环境。
 * Strategy : 策略的抽象。
 * ConcreteStrategyA、ConcreteStrategyB : 具体的策略实现。
-
-
 
 ## 3. 模式的简单实现
 ###  简单实现的介绍
@@ -67,12 +64,12 @@ UML类图
 
 具体实现代码如下：
 
-```java 
+```java
 	//针对操作进行抽象
 	public interface Strategy {
 		public double calc(double paramA, double paramB);
 	}
-	
+
 	//加法的具体实现策略
 	public class AddStrategy implements Strategy {
 		@Override
@@ -122,7 +119,7 @@ UML类图
 		public void setStrategy(Strategy strategy) {
 			this.strategy = strategy;
 		}
-		
+
 		public double calc(double paramA, double paramB) {
 			// TODO Auto-generated method stub
 			// doing something
@@ -148,13 +145,13 @@ UML类图
 	public static void main(String[] args) {
 		double paramA = 5;
 		double paramB = 21;
-		
+
 		System.out.println("------------- 普通形式 ----------------");
 		System.out.println("加法结果是：" + calc("+", paramA, paramB));
 		System.out.println("减法结果是：" + calc("-", paramA, paramB));
 		System.out.println("乘法结果是：" + calc("*", paramA, paramB));
 		System.out.println("除法结果是：" + calc("/", paramA, paramB));
-		
+
 		System.out.println("------------ 策略模式  ----------------");
 		System.out.println("加法结果是：" + calc(new AddStrategy(), paramA, paramB));
 		System.out.println("减法结果是：" + calc(new SubStrategy(), paramA, paramB));
@@ -162,7 +159,7 @@ UML类图
 		System.out.println("除法结果是：" + calc(new DivStrategy(), paramA, paramB));
 	}
 ```
-	
+
 结果为：
 
 ![url](images/strategy-kerison-uml-calc-result.png)  
@@ -182,7 +179,7 @@ UML类图
 		//初始化动画开始时间
         animation.setStartTime(Animation.START_ON_FIRST_FRAME);
 		//对View设置动画
-        setAnimation(animation); 
+        setAnimation(animation);
 		//刷新父类缓存
         invalidateParentCaches();
 		//刷新View本身及子View
@@ -191,7 +188,7 @@ UML类图
 ```
 考虑到View一般不会单独存在，都是存在于某个ViewGroup中，所以google使用动画绘制的地方选择了在ViewGroup中的drawChild(Canvas canvas, View child, long drawingTime)方法中进行调用子View的绘制。
 
-```java	
+```java
 	protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         return child.draw(canvas, this, drawingTime);
     }
@@ -202,14 +199,14 @@ UML类图
 ```java
 	boolean draw(Canvas canvas, ViewGroup parent, long drawingTime) {
 		//...
-		
+
 		//查看是否需要清除动画信息
 		final int flags = parent.mGroupFlags;
         if ((flags & ViewGroup.FLAG_CLEAR_TRANSFORMATION) == ViewGroup.FLAG_CLEAR_TRANSFORMATION) {
             parent.getChildTransformation().clear();
             parent.mGroupFlags &= ~ViewGroup.FLAG_CLEAR_TRANSFORMATION;
         }
-	
+
 		//获取设置的动画信息
 	   	final Animation a = getAnimation();
         if (a != null) {
@@ -242,7 +239,7 @@ UML类图
             if (mAttachInfo != null) a.setListenerHandler(mAttachInfo.mHandler);
             onAnimationStart();
         }
-		
+
 		//判断View是否需要进行缩放
 		final Transformation t = parent.getChildTransformation();
         boolean more = a.getTransformation(drawingTime, t, 1f);
@@ -260,7 +257,7 @@ UML类图
 			//根据具体实现，判断当前动画类型是否需要进行调整位置大小，然后刷新不同的区域
             if (!a.willChangeBounds()) {
 				//...
- 				
+
 			}else{
 				//...
 			}
@@ -281,7 +278,7 @@ UML类图
 ```
 
 在上面的方法中主要是获取缩放系数和调用Animation.getTransformation(long currentTime, Transformation outTransformation)来计算和应用动画效果。
-	
+
 ```java
 	Interpolator mInterpolator;  //成员变量
 	public boolean getTransformation(long currentTime, Transformation outTransformation) {
@@ -295,16 +292,16 @@ UML类图
 
 很容易发现Android系统中在处理动画的时候会调用插值器中的getInterpolation(float input)方法来获取当前的时间点，依次来计算当前变化的情况。这就不得不说到Android中的插值器Interpolator，它的作用是根据时间流逝的百分比来计算出当前属性值改变的百分比，系统预置的有LinearInterpolator（线性插值器：匀速动画）、AccelerateDecelerateInterpolator（加速减速插值器：动画两头慢中间快）和DecelerateInterpolator（减速插值器：动画越来越慢）等，如图：
 
-![url](images/strategy-kerison-uml-android-interpolator.png) 
+![url](images/strategy-kerison-uml-android-interpolator.png)
 
 由于初期比较旧的版本采用的插值器是TimeInterpolator抽象，google采用了多加一层接口继承来实现兼容也不足为怪了。很显然策略模式在这里作了很好的实现，Interpolator就是处理动画时间的抽象，LinearInterpolator、CycleInterpolator等插值器就是具体的实现策略。插值器与Animation的关系图如下：
 
-![url](images/strategy-kerison-uml-android.png) 
+![url](images/strategy-kerison-uml-android.png)
 
 这里以LinearInterpolator和CycleInterpolator为例：
 
 - LinearInterpolator
-	 
+
 		public float getInterpolation(float input) {
 	        return input;
 	    }
@@ -314,7 +311,7 @@ UML类图
 	  	public float getInterpolation(float input) {
 	        return (float)(Math.sin(2 * mCycles * Math.PI * input));
 	    }    
-	    
+
 可以看出LinearInterpolator中计算当前时间的方法是做线性运算，也就是返回input*1，所以动画会成直线匀速播放出来，而CycleInterpolator是按照正弦运算，所以动画会正反方向跑一次，其它插值器依次类推。不同的插值器的计算方法都有所差别，用户设置插值器以实现动画速率的算法替换。       
 
 

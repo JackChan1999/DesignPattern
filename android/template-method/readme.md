@@ -1,35 +1,30 @@
-Android设计模式源码解析之模板方法模式 
-====================================
+# Android设计模式源码解析之模板方法模式
+
 > 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 模板方法模式 分析  
 > Android系统版本： 2.3        
 > 分析者：[Mr.Simple](https://github.com/bboyfeiyu)，分析状态：完成，校对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：完成   
- 
 
 ## 1. 模式介绍  
- 
+
 ###  模式的定义
 定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
-
 
 ### 模式的使用场景
 1. 多个子类有公有的方法，并且逻辑基本相同时。
 2. 重要、复杂的算法，可以把核心算法设计为模板方法，周边的相关细节功能则由各个子类实现。
 3. 重构时，模板方法模式是一个经常使用的模式，把相同的代码抽取到父类中，然后通过钩子函数约束其行为。
- 
 
 ## 2. UML类图
 ![url](images/uml.png)  
 
 ### 角色介绍
-* AbstractClass : 抽象类，定义了一套算法框架。 
+* AbstractClass : 抽象类，定义了一套算法框架。
 * ConcreteClass1 : 具体实现类1；
 * ConcreteClass2： 具体实现类2；
 
-
-
 ## 3. 模式的简单实现
 ###  简单实现的介绍
-模板方法实际上是封装一个算法框架，就像是一套模板一样。而子类可以有不同的算法实现，在框架不被修改的情况下实现算法的替换。下面我们以开电脑这个动作来简单演示一下模板方法。开电脑的整个过程都是相对稳定的，首先打开电脑电源，电脑检测自身状态没有问题时将进入操作系统，对用户进行验证之后即可登录电脑，下面我们使用模板方法来模拟一下这个过程。 
+模板方法实际上是封装一个算法框架，就像是一套模板一样。而子类可以有不同的算法实现，在框架不被修改的情况下实现算法的替换。下面我们以开电脑这个动作来简单演示一下模板方法。开电脑的整个过程都是相对稳定的，首先打开电脑电源，电脑检测自身状态没有问题时将进入操作系统，对用户进行验证之后即可登录电脑，下面我们使用模板方法来模拟一下这个过程。
 
 ### 实现源码
 
@@ -77,7 +72,7 @@ package com.dp.example.templatemethod;
 
 /**
  * 码农的计算机
- * 
+ *
  * @author mrsimple
  */
 public class CoderComputer extends AbstractComputer {
@@ -92,18 +87,18 @@ package com.dp.example.templatemethod;
 
 /**
  * 军用计算机
- * 
+ *
  * @author mrsimple
  */
 public class MilitaryComputer extends AbstractComputer {
-    
- 
+
+
     @Override
     protected void checkHardware() {
         super.checkHardware();
         System.out.println("检查硬件防火墙");
     }
-    
+
     @Override
     protected void login() {
         System.out.println("进行指纹之别等复杂的用户验证");
@@ -143,17 +138,16 @@ public class Test {
 进行指纹之别等复杂的用户验证
 ------ 开机 END ------
 ```
-   
+
 通过上面的例子可以看到，在startUp方法中有一些固定的步骤，依次为开启电源、检查硬件、加载系统、用户登录四个步骤，这四个步骤是电脑开机过程中不会变动的四个过程。但是不同用户的这几个步骤的实现可能各不相同，因此他们可以用不同的实现。而startUp为final方法，即保证了算法框架不能修改，具体算法实现却可以灵活改变。startUp中的这几个算法步骤我们可以称为是一个套路，即可称为模板方法。因此，模板方法是定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。如图 :    
 
 ![flow](images/flow.png)
-
 
 ## Android源码中的模式实现
 在Android中，使用了模板方法且为我们熟知的一个典型类就是AsyncTask了，关于AsyncTask的更详细的分析请移步Android中AsyncTask的使用与源码分析，我们这里只分析在该类中使用的模板方法模式。     
 
 在使用AsyncTask时，我们都有知道耗时的方法要放在doInBackground(Params... params)中，在doInBackground之前如果还想做一些类似初始化的操作可以写在onPreExecute方法中，当doInBackground方法执行完成后，会执行onPostExecute方法，而我们只需要构建AsyncTask对象，然后执行execute方法即可。我们可以看到，它整个执行过程其实是一个框架，具体的实现都需要子类来完成。而且它执行的算法框架是固定的，调用execute后会依次执行onPreExecute,doInBackground,onPostExecute,当然你也可以通过onProgressUpdate来更新进度。我们可以简单的理解为如下图的模式  :
-	
+
 ![async-flow](images/async-flow.png)	   
 
 下面我们看源码，首先我们看执行异步任务的入口, 即execute方法 :     
@@ -229,9 +223,10 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
 ```  
 
 简单的说就是mFuture就包装了这个mWorker对象，会调用mWorker对象的call方法，并且将之返回给调用者。      
-	关于AsyncTask的更详细的分析请移步[Android中AsyncTask的使用与源码分析](http://blog.csdn.net/bboyfeiyu/article/details/8973058)，我们这里只分析模板方法模式。总之，call方法会在子线程中调用，而在call方法中又调用了doInBackground方法，因此doInBackground会执行在子线程。doInBackground会返回结果，最终通过postResult投递给UI线程。
+
+关于AsyncTask的更详细的分析请移步[Android中AsyncTask的使用与源码分析](http://blog.csdn.net/bboyfeiyu/article/details/8973058)，我们这里只分析模板方法模式。总之，call方法会在子线程中调用，而在call方法中又调用了doInBackground方法，因此doInBackground会执行在子线程。doInBackground会返回结果，最终通过postResult投递给UI线程。
 	我们再看看postResult的实现 :     
-	
+
 ```java
     private Result postResult(Result result) {
         Message message = sHandler.obtainMessage(MESSAGE_POST_RESULT,
@@ -270,7 +265,7 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
 ```     
 
 可以看到，postResult就是把一个消息( msg.what == MESSAGE_POST_RESULT)发送给sHandler，sHandler类型为InternalHandler类型，当InternalHandler接到MESSAGE_POST_RESULT类型的消息时就会调用result.mTask.finish(result.mData[0])方法。我们可以看到result为AsyncTaskResult类型，源码如下  :     
-   
+
 
 ```java
     @SuppressWarnings({"RawUseOfParameterizedType"})
@@ -286,8 +281,10 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
 ```    
 
 **可以看到mTask就是AsyncTask对象**，调用AsyncTask对象的finish方法时又调用了onPostExecute，这个时候整个执行过程就完成了。
-	总之，execute方法内部封装了onPreExecute, doInBackground, onPostExecute这个算法框架，用户可以根据自己的需求来在覆写这几个方法，使得用户可以很方便的使用异步任务来完成耗时操作，又可以通过onPostExecute来完成更新UI线程的工作。       
-	另一个比较好的模板方法示例就是Activity的声明周期函数，例如Activity从onCreate、onStart、onResume这些程式化的执行模板，这就是一个Activity的模板方法。       
+
+总之，execute方法内部封装了onPreExecute, doInBackground, onPostExecute这个算法框架，用户可以根据自己的需求来在覆写这几个方法，使得用户可以很方便的使用异步任务来完成耗时操作，又可以通过onPostExecute来完成更新UI线程的工作。       
+
+另一个比较好的模板方法示例就是Activity的声明周期函数，例如Activity从onCreate、onStart、onResume这些程式化的执行模板，这就是一个Activity的模板方法。       
 
 ## 4. 杂谈
 ### 优点与缺点
@@ -295,5 +292,5 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
 * 封装不变部分，扩展可变部分
 * 提取公共部分代码，便于维护
 
-#### 缺点 
-* 模板方法会带来代码阅读的难度，会让心觉得难以理解。 
+#### 缺点
+* 模板方法会带来代码阅读的难度，会让心觉得难以理解。

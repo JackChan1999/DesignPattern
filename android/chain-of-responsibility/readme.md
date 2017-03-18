@@ -1,18 +1,17 @@
 Android设计模式源码解析之责任链模式 
-====================================
+
 > 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中责任链模式分析  
 > Android系统版本： 4.4.4        
 > 分析者：[Aige](https://github.com/AigeStudio)，分析状态：完成，校对者：[SM哥](https://github.com/bboyfeiyu)，校对状态：撒丫校对中  
- 
+
 ## 1. 模式介绍  
- 
+
 ###  模式的定义
 一个请求沿着一条“链”传递，直到该“链”上的某个处理者处理它为止。
 
 
 ### 模式的使用场景
  一个请求可以被多个处理者处理或处理者未明确指定时。
- 
 
 ## 2. UML类图
 ![UML](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis/blob/master/chain-of-responsibility/AigeStudio/images/chain-of-responsibility.jpg?raw=true)
@@ -23,8 +22,6 @@ Client：客户端
 Handler：抽象处理者
 
 ConcreteHandler：具体处理者
-
-
 
 
 ## 3. 模式的简单实现

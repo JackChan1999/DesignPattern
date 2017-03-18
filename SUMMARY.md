@@ -39,4 +39,17 @@
   * [享元模式](design-pattern/享元模式.md)
   * [装饰者模式](design-pattern/装饰者模式.md)
   * [MVC、MVP、MVVM设计模式的比较](design-pattern/MVC、MVP、MVVM设计模式的比较.md)
-
+* Android源码设计模式分析
+  * [单例模式](android\singleton\readme.md)
+  * [Builder模式](android\builder\readme.md)
+  * [外观模式](android\facade\readme.md)
+  * [模板方法](android\template-method\readme.md)
+  * [策略模式](android\strategy\README.md)
+  * [代理模式](android\proxy\README.md)
+  * [迭代器模式](android\iterator\readme.md)
+  * [责任链模式](android\chain-of-responsibility\readme.md)
+  * [命令模式](android\command\readme.md)
+  * [桥接模式](android\bridge\readme.md)
+  * [原型模式]()
+  * []()
+  * []()

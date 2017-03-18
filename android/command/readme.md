@@ -1,11 +1,11 @@
-Android设计模式源码解析之命令模式 
-====================================
+# Android设计模式源码解析之命令模式 
+
 > 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 命令模式 分析  
 > Android系统版本： 2.3        
 > 分析者：[lijunhuayc](https://github.com/lijunhuayc)，分析状态：完成，校对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：未开始   
 
 ## 1. 模式介绍  
- 
+
 ###  模式的定义
 将一个请求封装成一个对象，从而使你可用不同的请求对客户进行参数化，对请求排队或记录请求日志，以及支持可撤销的操作。
 
@@ -33,7 +33,9 @@ Android设计模式源码解析之命令模式
 ## 3. 模式的简单实现
 ###  简单实现的介绍
 命令模式其实就是对命令进行封装，将命令请求者和命令执行者的责任分离开来实现松耦合。
+
 这里我们通过一个简单的实例来剖析一下命令模式：命令接收者ReceiverRole拥有一个PeopleBean类型成员，通过Invoker发出不同的命令来修改PeopleBean的相对应的属性，具体命令实现类ConcreteCommandImpl1执行修改年龄命令，ConcreteCommandImpl2执行修改姓名的命令等等，ClientRole负责组装各个部分。
+
 例子代码如下（resource目录下也可以查看）。
 
 ### 实现源码
@@ -54,7 +56,7 @@ Android设计模式源码解析之命令模式
 ConcreteCommandImpl1.java类.     
 
 
-```java    
+```java
 
     package com.command;
     /**
@@ -247,7 +249,7 @@ PeopleBean.java
     	// setter and getter 
     	
     }
-```     
+```
 
 ClientRole.java    
 
@@ -300,12 +302,14 @@ ClientRole.java
 
 ## Android源码中的模式实现
 Command接口中定义了一个execute方法，客户端通过Invoker调用命令操作再来调用Recriver执行命令；把对Receiver的操作请求封装在具体的命令中，使得命令发起者和命令接收者解耦。
+
 以Android中大家常见的Runnable为例：客户端只需要new Thread(new Runnable(){}).start()就开始执行一系列相关的请求，这些请求大部分都是实现Runnable接口的匿名类。
+
 【O_o 模式就在我们身边~】
 
 命令接口Runnable接口定义如下：    
 
-```
+```java
 package java.lang;
 /**
  * Represents a command that can be executed. Often used to run code in a
@@ -325,7 +329,7 @@ public interface Runnable {
 调用者Thread源码如下（省略部分代码）：
 Tips：命令模式在这里本来不需要继承Runnable接口，但为了方便性等，继承了Runnable接口实现了run方法，这个run是Thread自身的运行run的方法，而不是命令Runnable的run。    
 
-```
+```java
 public class Thread implements Runnable {
     //省略部分无关代码...
     /* some of these are accessed directly by the VM; do not rename them */
@@ -349,11 +353,11 @@ public class Thread implements Runnable {
     }
     //省略部分代码...
 }
-```    
+```
 
 上面可以看到执行start()方法的时候实际执行了VMThread.create(this, stackSize)方法；create是VMThread的本地方法，其JNI实现在 android/dalvik/vm/native/java_lang_VMThread.cpp 中的 Dalvik_java_lang_VMThread_create方法，如下：      
 
-```
+```java
 static void Dalvik_java_lang_VMThread_create(const u4* args, JValue* pResult)
 {
     Object* threadObj = (Object*) args[0];
@@ -363,11 +367,11 @@ static void Dalvik_java_lang_VMThread_create(const u4* args, JValue* pResult)
     dvmCreateInterpThread(threadObj, (int) stackSize);
     RETURN_VOID();
 }
-```    
+```
 
 而dvmCreateInterpThread的实现在Thread.app中，如下：    
 
-```
+```java
 bool dvmCreateInterpThread(Object* threadObj, int reqStackSize){
     Thread* self = dvmThreadSelf();
     
@@ -398,14 +402,14 @@ static Thread* allocThread(int interpStackSize)
     
     thread->status = THREAD_INITIALIZING;
 }
-```   
+```
 
 这里是底层代码，简单介绍下就行了：
 第4行通过调用 allocThread 创建一个名为newThread的dalvik Thread并设置一些属性，第5行设置其成员变量threadObj为传入的Android Thread，这样dalvik Thread就与Android Thread对象关联起来了；第7行然后创建一个名为vmThreadObj的VMThread对象，设置其成员变量vmData为前面创建的newThread，设置 Android Thread threadObj的成员变量vmThread为这个vmThreadObj，这样Android Thread通过VMThread的成员变量vmData就和dalvik Thread关联起来了。       
 
 接下来在12行通过pthread_create创建pthread线程，并让这个线程start，这样就会进入该线程的thread entry运行，下来我们来看新线程的thread entry方法 interpThreadStart，同样只列出关键的地方：
 
-```
+```java
 //pthread entry function for threads started from interpreted code.
 static void* interpThreadStart(void* arg){
     Thread* self = (Thread*) arg;
@@ -457,12 +461,12 @@ static void setThreadSelf(Thread* thread){
     int cc;
     cc = pthread_setspecific(gDvm.pthreadKeySelf, thread);
 }
-```    
+```
 
 在新线程的interpThreadStart方法中，首先设置线程的名字，然后调用prepareThread设置线程id以及其它一些属性，其中调用了setThreadSelf将新dalvik Thread自身保存在TLS中，这样之后就能通过dvmThreadSelf方法从TLS中获取它。然后在29行处修改状态为THREAD_RUNNING，并在36行调用对应Android Thread的run()方法，其中调用了Runnable的run方法，运行我们自己的代码。
 绕这么深才执行到我们的run方法，累不累？ v_v      
 
-```
+```java
     /**
      * Calls the <code>run()</code> method of the Runnable object the receiver
      * holds. If no Runnable is set, does nothing.
@@ -473,19 +477,19 @@ static void setThreadSelf(Thread* thread){
             target.run();
         }
     }
-```   
+```
 
 到此我们已经完成一次命令调用，至于底层run调用完毕后续执行代码，读者可以自行跟进看看~~~
 
 
 ## 4. 杂谈
-###优点与缺点
-####优点
+### 优点与缺点
+#### 优点
 1. 降低对象之间的耦合度。
 2. 新的命令可以很容易地加入到系统中。
 3. 可以比较容易地设计一个组合命令。
 4. 调用同一方法实现不同的功能
 
-####缺点
+#### 缺点
 使用命令模式可能会导致某些系统有过多的具体命令类。因为针对每一个命令都需要设计一个具体命令类，因此某些系统可能需要大量具体命令类，这将影响命令模式的使用。       
 比如上面的PeopleBean的属性增加，Receiver针对PeopleBean一个属性一个执行方法，一个Command的实现可以调用Receiver的一个执行方法，由此得需要设计多少个具体命令类呀！！
