@@ -20,8 +20,8 @@
 
 <table>
 <tr>
-    <td align="center"><img src="http://img.blog.csdn.net/20150220212211272" /></td>
-    <td align="center"><img src="http://img.blog.csdn.net/20150220212230909" /></td>
+    <td align="center"><img src="images/adapter1" /></td>
+    <td align="center"><img src="images/adapter2" /></td>
 </tr>
   <tr>
     <td align="center">图1</td>

@@ -40,6 +40,7 @@
   * [装饰者模式](design-pattern/装饰者模式.md)
   * [MVC、MVP、MVVM设计模式的比较](design-pattern/MVC、MVP、MVVM设计模式的比较.md)
 * Android源码设计模式分析
+  * [公共技术点之面向对象六大原则](android\oop-principles\oop-principles.md)
   * [单例模式](android\singleton\readme.md)
   * [Builder模式](android\builder\readme.md)
   * [外观模式](android\facade\readme.md)

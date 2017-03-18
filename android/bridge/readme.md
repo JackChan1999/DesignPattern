@@ -18,7 +18,7 @@
 
 ### 1.3 UML类图
 
-![uml](http://img.blog.csdn.net/20150322120730408)
+![uml](images/bridge1)
 
 ### 1.4 角色介绍
 
@@ -244,7 +244,7 @@ public abstract class AbsListView extends AdapterView<ListAdapter>
 
 这些以后，我们来画一个简易的UML图来看下:
 
-![uml](http://img.blog.csdn.net/20150322120809221)
+![uml](images/bridge2)
 
 对比下GOF的上图，是不是发现很像呢？实际上最开始研究Adapter模式的时候,越看越不对啊，于是整理结构，画了UML发现这更像是一个bridge模式，那时候对设计模式也是模模糊糊的，于是静下来研究。抽象化的角色一个视图的集合AdapterView，它扩展了AbsListView，AbsSpinner，接下来他们分别扩展了ListView，GridView，Spinner,Gallery，用不同方式来展现这些ItemViews，我们继续扩展类似ListView的PulltoRefreshView等等。而实现化角色Adapter扩展了ListAdpater,SpinnerAdapter，接着具体的实现化角色BaseAdapter实现了他们，我们通过继承BaseAdapter又实现了我们各式各样的ItemView。
 
