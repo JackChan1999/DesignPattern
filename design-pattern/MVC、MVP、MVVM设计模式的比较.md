@@ -1,7 +1,7 @@
 ## 1. MVC设计模式
 ### 1.1 概述
 
-![mvc](http://img.blog.csdn.net/20160920144040723)
+![mvc](../assets/designpattern17)
 
 | 意义   | 说明                                       |
 | :--- | :--------------------------------------- |
@@ -33,7 +33,7 @@ Android中的ListView就用到了MVC设计模式
 而Activity控制层和视图层都有
 
 ## 2. MVP设计模式
-![mvp模式](http://img.blog.csdn.net/20160920145902825)
+![mvp模式](../assets/designpattern18)
 
 | 意义        | 说明                               |
 | :-------- | :------------------------------- |
@@ -79,7 +79,7 @@ View通常是指Activity、Fragment或者某个View控件，它含有一个Prese
 Model 角色主要是提供数据的存取功能。Presenter 需要通过Model层存储、获取数据，Model就像一个数据仓库。更直白的说，Model是封装了数据库DAO或者网络获取数据的角色，或者两种数据方式获取的集合。
 
 ## 3. MVVM设计模式
-![mvvm模式](http://img.blog.csdn.net/20160920145924309)
+![mvvm模式](../assets/designpattern20)
 
 | 意义        | 说明                                       |
 | :-------- | :--------------------------------------- |

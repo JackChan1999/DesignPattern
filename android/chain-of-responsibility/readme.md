@@ -14,7 +14,7 @@ Android设计模式源码解析之责任链模式
  一个请求可以被多个处理者处理或处理者未明确指定时。
 
 ## 2. UML类图
-![UML](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis/blob/master/chain-of-responsibility/AigeStudio/images/chain-of-responsibility.jpg?raw=true)
+![UML](images/chain-of-responsibility.jpg)
 
 ### 角色介绍
 Client：客户端
