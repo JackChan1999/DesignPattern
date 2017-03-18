@@ -39,7 +39,7 @@
   * [享元模式](design-pattern/享元模式.md)
   * [装饰者模式](design-pattern/装饰者模式.md)
   * [MVC、MVP、MVVM设计模式的比较](design-pattern/MVC、MVP、MVVM设计模式的比较.md)
-* Android源码设计模式分析
+* [Android源码设计模式分析](android\android_design_patterns_analysis.md)
   * [公共技术点之面向对象六大原则](android/oop-principles/oop-principles.md)
   * [单例模式](android/singleton/readme.md)
   * [Builder模式](android/builder/readme.md)
