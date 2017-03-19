@@ -24,13 +24,13 @@ https://github.com/JackChen1999/DesignPattern
 
 https://alleniverson.gitbooks.io/design-pattern/content
 
-# Summary
+# 设计模式
 
 * [前言](README.md)
 * [迈出从3K到1W的重要一步——掌握设计模式](design-pattern/迈出从3K到1W的重要一步——掌握设计模式.md)
 * [设计模式中类的关系](design-pattern/设计模式中类的关系.md)
 * [谈一谈自己对依赖、关联、聚合和组合之间区别的理解](design-pattern/谈一谈自己对依赖、关联、聚合和组合之间区别的理解.md)
-* 设计模式六大原则
+* [设计模式六大原则](oop-principles/README.md)
   * [单一职责原则](design-pattern/设计模式六大原则1-单一职责原则.md)
   * [里氏替换原则](design-pattern/设计模式六大原则2-里氏替换原则.md)
   * [依赖倒置原则](design-pattern/设计模式六大原则3-依赖倒置原则.md)
@@ -40,7 +40,7 @@ https://alleniverson.gitbooks.io/design-pattern/content
   * [面向对象六大原则1](oop-principles/面向对象六大原则.md)
   * [面向对象六大原则2](oop-principles/oop-principles.md)
   * [软件设计之高内聚低耦合](oop-principles/软件设计之高内聚低耦合.md)
-* 23种设计模式
+* [23种设计模式](design-pattern/README.md)
   * [单例模式1](design-pattern/23种设计模式1-单例模式.md)
   * [单例模式2](singleton/单例模式1.md)
   * [单例模式3](singleton/单例模式2.md)
