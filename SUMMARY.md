@@ -1,9 +1,15 @@
 # Summary
 
 * [前言](README.md)
+
+----
+
 * [迈出从3K到1W的重要一步——掌握设计模式](design-pattern/迈出从3K到1W的重要一步——掌握设计模式.md)
 * [设计模式中类的关系](design-pattern/设计模式中类的关系.md)
 * [谈一谈自己对依赖、关联、聚合和组合之间区别的理解](design-pattern/谈一谈自己对依赖、关联、聚合和组合之间区别的理解.md)
+
+----
+
 * [设计模式六大原则](oop-principles/README.md)
   * [单一职责原则](design-pattern/设计模式六大原则1-单一职责原则.md)
   * [里氏替换原则](design-pattern/设计模式六大原则2-里氏替换原则.md)
@@ -14,6 +20,9 @@
   * [面向对象六大原则1](oop-principles/面向对象六大原则.md)
   * [面向对象六大原则2](oop-principles/oop-principles.md)
   * [软件设计之高内聚低耦合](oop-principles/软件设计之高内聚低耦合.md)
+
+----
+
 * [23种设计模式](design-pattern/README.md)
   * [单例模式1](design-pattern/23种设计模式1-单例模式.md)
   * [单例模式2](singleton/单例模式1.md)
@@ -40,6 +49,9 @@
   * [适配器设计模式](adapter/适配器设计模式.md)
   * [享元模式](flyweight/享元模式.md)
   * [装饰者模式](decorator/装饰者模式.md)
+
+----
+
 * [Android源码设计模式分析](android_design_patterns_analysis.md)
   * [单例模式1](singleton/readme.md)
   * [单例模式2](singleton/Android源码分析之单例模式.md)

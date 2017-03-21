@@ -3,5 +3,8 @@
     "description": "23种Java设计模式",
     "gitbook": "3.2.2",
     "language": "zh-hans",
-    "title": "Java设计模式"
+    "title": "Java设计模式",
+    "pdf": {
+        "fontFamily": "等线"
+    }
 }
