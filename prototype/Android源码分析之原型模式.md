@@ -10,7 +10,7 @@
 
 ## 3. UML类图
 
-![](../../assets/prototype.png)
+![](../assets/prototype.png)
 
 
 ## 4. 角色介绍
@@ -126,7 +126,7 @@ public class Client {
 
 输出结果如下 :
 
-![](../../assets/prototype1.png)
+![](../assets/prototype1.png)
 
 可以看到，doc2是通过originDoc.clone()创建的，并且doc2第一次输出的时候和originDoc输出是一样的。即doc2是originDoc的一份拷贝，他们的内容是一样的，而doc2修改了文本内容以后并不会影响originDoc的文本内容。需要注意的是通过clone拷贝对象的时候并不会执行构造函数！
 
@@ -156,7 +156,7 @@ public static void main(String[] args) {
 ```
 输出结果如下 :
 
-![](../../assets/prototype2.png)
+![](../assets/prototype2.png)
 
 细心的朋友可能发现了，在doc2添加了一张名为"哈哈.jpg"的照片，但是却也显示在originDoc中？这是怎么回事呢？  其实学习过C++的朋友都知道，这是因为上文中WordDocument的clone方法中只是简单的进行浅拷贝，引用类型的新对象doc2的mImages只是单纯的指向了this.mImages引用，而并没有进行拷贝。doc2的mImages添加了新的图片，实际上也就是往originDoc里添加了新的图片，所以originDoc里面也有"哈哈.jpg" 。那如何解决这个问题呢？  那就是采用深拷贝，即在拷贝对象时，对于引用型的字段也要采用拷贝的形式，而不是单纯引用的形式。示例如下 :
 
@@ -180,7 +180,7 @@ public static void main(String[] args) {
 ```
 如上代码所示，将doc.mImages指向this.mImages的一份拷贝， 而不是this.mImages本身，这样在doc2添加图片时并不会影响originDoc，如图所示 :
 
-![](../../assets/prototype3.png)
+![](../assets/prototype3.png)
 
 
 ## 7. 源码分析
@@ -198,7 +198,7 @@ Uri uri = Uri.parse("smsto:0800000123");
 
 结果如下 :
 
-<img src="../../assets/prototype4.png" width="400" />
+<img src="../assets/prototype4.png" width="400" />
 
 可以看到，我们通过shareIntent.clone方法拷贝了一个对象intent, 然后执行startActivity(intent)， 随即就进入了短信页面，号码为0800000123,文本内容为The SMS text，即这些内容都与shareIntent一致。
 
