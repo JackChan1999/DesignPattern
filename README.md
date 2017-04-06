@@ -96,16 +96,16 @@ https://alleniverson.gitbooks.io/design-pattern/content
   * [原型模式2](prototype/Android源码分析之原型模式.md)
   * [MVC、MVP、MVVM设计模式的比较](mvp/MVC、MVP、MVVM设计模式的比较.md)
 
-  ## 关注我
+## 关注我
 
-  - Email：<815712739@qq.com>
-  - CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
-  - 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
-  - GitHub：[JackChen1999](https://github.com/JackChen1999)
-  - GitBook：[alleniverson](https://www.gitbook.com/@alleniverson)
+- Email：<815712739@qq.com>
+- CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
+- 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
+- GitHub：[JackChen1999](https://github.com/JackChen1999)
+- GitBook：[alleniverson](https://www.gitbook.com/@alleniverson)
 
-  如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！
+如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！
 
-  |                  微信赞赏支持                  |                 支付宝赞赏支持                  |
-  | :--------------------------------------: | :--------------------------------------: |
-  | <img src="assets/weixin.png" width="300" /> | <img src="assets/支付宝.jpg" width="300" /> |
+|                  微信赞赏支持                  |                 支付宝赞赏支持                  |
+| :--------------------------------------: | :--------------------------------------: |
+| <img src="assets/weixin.png" width="300" /> | <img src="assets/支付宝.jpg" width="300" /> |
