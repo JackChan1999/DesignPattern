@@ -85,7 +85,8 @@ Binder一个很重要的作用是：将客户端的请求参数通过Parcel包�
 为了更好地说明Binder，这里我们先手动实现了一个Binder。为了使得逻辑更清晰，这里简化一下，我们来模拟一个银行系统，这个银行提供的功能只有一个：即查询余额，只有传递一个int的id过来，银行就会将你的余额设置为id*10，满足下大家的发财梦。
 
 1. 先定义一个Binder接口
- ```java
+
+```java
 package com.ryg.design.manualbinder;
 
 import android.os.IBinder;
@@ -104,6 +105,7 @@ public interface IBank extends IInterface {
 ```
 
 2.创建一个Binder并实现这个上述接口
+
 ```java
 package com.ryg.design.manualbinder;
 
@@ -200,11 +202,13 @@ public class BankImpl extends Binder implements IBank {
 ok，到此为止，我们的Binder就完成了，这里只要创建服务端和客户端，二者就能通过我们的Binder来通信了。这里就不做这个示例了，我们的目的是分析代理模式在Binder中的使用。
 
 我们看上述Binder的实现中，有一个叫做“Proxy”的类，它的构造方法如下：
+
 ```java
   Proxy(IBinder remote) {
       mRemote = remote;
   }
 ```
+
 Proxy类接收一个IBinder参数，这个参数实际上就是服务端Service中的onBind方法返回的Binder对象在客户端重新打包后的结果，因为客户端无法直接通过这个打包的Binder和服务端通信，因此客户端必须借助Proxy类来和服务端通信，这里Proxy的作用就是代理的作用，客户端所有的请求全部通过Proxy来代理，具体工作流程为：Proxy接收到客户端的请求后，会将客户端的请求参数打包到Parcel对象中，然后将Parcel对象通过它内部持有的Ibinder对象传送到服务端，服务端接收数据、执行方法后返回结果给客户端的Proxy，Proxy解析数据后返回给客户端的真正调用者。很显然，上述所分析的就是典型的代理模式。至于Binder如何传输数据，这涉及到很底层的知识，这个很难搞懂，但是数据传输的核心思想是共享内存。
 
 ## 5. 杂谈

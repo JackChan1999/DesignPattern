@@ -272,7 +272,7 @@ public class Test {
     }
 ```
 
-结果如图所示 :
+结果如图所示 :  
 
 <img src="http://img.blog.csdn.net/20140424113019562?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYmJveWZlaXl1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" width="500" />
 

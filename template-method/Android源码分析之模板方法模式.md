@@ -9,7 +9,7 @@
 
 ## 3. UML类图
 
-![](../../assets/template1.png)
+![](../assets/template1.png)
 
 
 ## 4. 角色介绍
@@ -133,7 +133,7 @@ public class Test {
 
 通过上面的例子可以看到，在startUp方法中有一些固定的步骤，依次为开启电源、检查硬件、加载系统、用户登录四个步骤，这四个步骤是电脑开机过程中不会变动的四个过程。但是不同用户的这几个步骤的实现可能各不相同，因此他们可以用不同的实现。而startUp为final方法，即保证了算法框架不能修改，具体算法实现却可以灵活改变。startUp中的这几个算法步骤我们可以称为是一个套路，即可称为模板方法。因此，模板方法是定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。如图 :
 
-![](../../assets/template2.png)
+![](../assets/template2.png)
 
 
 ## 6. 源码分析
@@ -142,7 +142,7 @@ public class Test {
 
 在使用AsyncTask时，我们都有知道耗时的方法要放在doInBackground(Params... params)中，在doInBackground之前如果还想做一些类似初始化的操作可以写在onPreExecute方法中，当doInBackground方法执行完成后，会执行onPostExecute方法，而我们只需要构建AsyncTask对象，然后执行execute方法即可。我们可以看到，它整个执行过程其实是一个框架，具体的实现都需要子类来完成。而且它执行的算法框架是固定的，调用execute后会依次执行onPreExecute,doInBackground,onPostExecute,当然你也可以通过onProgressUpdate来更新进度。我们可以简单的理解为如下图的模式  :
 
-![](../../assets/template3.png)
+![](../assets/template3.png)
 
 下面我们看源码，首先我们看执行异步任务的入口, 即execute方法 :
 
