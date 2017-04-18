@@ -84,6 +84,7 @@ https://alleniverson.gitbooks.io/design-pattern/content
   * [模板方法1](template-method/readme.md)
   * [模板方法2](template-method/Android源码分析之模板方法模式.md)
   * [策略模式](strategy/README.md)
+  * [策略模式的应用](strategy/策略模式的应用.md)
   * [代理模式](proxy/README.md)
   * [迭代器模式](iterator/readme.md)
   * [适配器模式](adapter/readme.md)
