@@ -1,7 +1,7 @@
 ## 1. MVC设计模式
 ### 1.1 概述
 
-MVC设计模式的目的是将数据模型和视图分离开来，并以控制器作为连接两者的桥梁以实现解耦
+模型-视图-控制器，MVC设计模式的目的是将数据模型和视图分离开来，并以控制器作为连接两者的桥梁以实现解耦
 
 ![mvc](img/mvc.png)
 
@@ -28,7 +28,7 @@ Activity中存在两部分内容：业务相关和界面相关，V中的内容�
 ### 1.2 案例分析
 Android中的ListView就用到了MVC设计模式
 
-- M：数据的集合，List<UserInfo>
+- M：数据的集合，List&lt;UserInfo>
 - V：ListView
 - C：Adapter，控制数据如何显示在ListView上
 
@@ -38,7 +38,7 @@ Android中的ListView就用到了MVC设计模式
 
 ## 2. MVP设计模式
 
-MVP模式可以分离显示层和逻辑层，它们之间通过接口进行通信，降低耦合。
+MVP模式可以分离显示层和逻辑层，它们之间通过接口进行通信，降低耦合。MVP能够有效降低View复杂性，避免业务逻辑塞进View中，使得View变成一个混乱的“大泥坑”。
 
 ![mvp模式](img/mvp.png)
 
@@ -143,6 +143,18 @@ View Model里面是数据和业务逻辑，View中关注的是UI，这样的做�
 而后再加上代码自动生成，通过web服务器的数据库，直接生成业务处理代码与接口，Android端也自动生成业务处理类。着多牛逼啊，然后Android开发失业。web开发失业。数据库设计和界面开发笑到了最后。
 
 这都是我们对于mvvm的自嗨和幻想+YY，Google大兄弟目前还没有推荐的技术实现。感觉Google处境很尴尬，现在Facebook 推出的 React Native 如日中天，大有替代Java 原生编程的趋势。如果真取代了，Android Application 将是 Node.js JavaScript的乐园。我们原生应用的开发工程师可要下岗了。目前已经在不断蚕食Android原生开发的份额，通过Cordova这个内奸，Html5家族由原来的jQuery Mobile 到 Augular.js 和ionic，再到 React 和 React Native，来势汹汹。JS是如日中天，蓬勃发展。再回来讨论MVVM竟然是前端带来的技术。遇见的未来竞争会更激烈。广大Android原生开发的从业者受的的冲击会更大。
+
+MVC特点
+
+- 用户可以向View发送指令， 再由View直接要求Model改变状态
+- 用户也可以直接向Controller发送指令，再由Controller发送给View
+- Controller起到事件路由的作用，同时业务逻辑也都部署在Controller中
+
+MVVM的特点
+
+MVVM与MVP非常相似，唯一的区别是View和Model进行双向绑定（data binding），两者之间有一方发生变化则会反应到零一方上。而MVP与MVVM的主要区别是，MVP中的View更新需要通过Presenter，而MVVM则不需要，因为View和Model进行双向绑定，数据的修改会直接反应到View上，而View的修改也会导致数据的变更。此时，ViewModel需要做的只是业务逻辑的处理，以及修改修改View和Model的状态。MVVM模式有点像ListView和Adapter、数据集的关系，这个Adapter就是ViewModel的角色，它与View进行了绑定，又与数据集进行了绑定，当数据集合发生变化时，调用Adapter的notifyDataSetChange()之后View就直接更新了，它们直接没有直接的耦合，使得ListView变得更为灵活。
+
+![](img/mvc1.png)  ![](img/mvvm.png) ![](img/mvp1.png)
 
 ## 4. Demo
 
