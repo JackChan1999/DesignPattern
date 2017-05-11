@@ -14,15 +14,15 @@
 Java JDK 1.2 版开始支持迭代器。每一个迭代器提供next()以及hasNext()方法，同时也支持remove()(1.8的时候remove已经成为default throw new UnsupportedOperationException("remove"))。对Android来说,集合Collection实现了Iterable接口,就是说,无论是List的一大家子还是Map的一大家子,我们都可以使用Iterator来遍历里面的元素,[可以使用Iterator的集合](http://docs.oracle.com/javase/8/docs/api/java/util/package-tree.html)      
 
 ## 2. UML类图
-　　　
+
 ![iterator](images/Iterator_UML_class_diagram.svg.png)   
 
 ### 角色介绍
 
 * 迭代器接口Iterator：该接口必须定义实现迭代功能的最小定义方法集比如提供hasNext()和next()方法。
-* 迭代器实现类：迭代器接口Iterator的实现类。可以根据具体情况加以实现。
-* 容器接口：定义基本功能以及提供类似Iterator iterator()的方法。
-* 容器实现类：容器接口的实现类。必须实现Iterator iterator()方法。
+* 迭代器实现类ConcreteIterator：迭代器接口Iterator的实现类。可以根据具体情况加以实现。
+* 容器接口Aggregate：定义基本功能以及提供类似Iterator iterator()的方法。
+* 容器实现类ConcreteAggregate：容器接口的实现类。必须实现Iterator iterator()方法。
 
 
 ## 3. 模式的简单实现
@@ -102,7 +102,7 @@ while( iterator. hasNext() ){
     String key = (String) iterator.next();
     String value = colorMap.get(key);
 }
-```       
+```
 * JSONObject的遍历
 ```java
 String paramString = "{menu:{\"1\":\"sql\", \"2\":\"android\", \"3\":\"mvc\"}}";
@@ -113,7 +113,7 @@ while(iter.hasNext()){
     String key = (String)iter.next();
     String value = menuObj.getString(key);
 }
-```      
+```
 就目前而言，各种高级语言都有对迭代器的基本实现，没必要自己实现迭代器，使用内置的迭代器即可满足日常需求。         
 
 ## Android源码中的模式实现

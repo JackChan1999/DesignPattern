@@ -1,8 +1,8 @@
 # Android设计模式源码解析之原型模式
 
-> 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 原型模式 分析  
-> Android系统版本： 2.3         
-> 分析者：[Mr.Simple](https://github.com/bboyfeiyu)，分析状态：未完成，校对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：完成    
+> 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 原型模式 分析 
+> Android系统版本： 2.3 
+> 分析者：[Mr.Simple](https://github.com/bboyfeiyu)，分析状态：未完成，对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：完成    
 
 ## 1. 模式介绍  
 
@@ -42,7 +42,7 @@ import java.util.List;
 
 /**
  * 文档类型, 扮演的是ConcretePrototype角色，而cloneable是代表prototype角色
- *
+ * Cloneable 标识接口，表名这个类的对象是可拷贝的
  * @author mrsimple
  */
 public class WordDocument implements Cloneable {
@@ -60,7 +60,7 @@ public class WordDocument implements Cloneable {
     }
 
     /**
-     * 克隆对象
+     * 克隆对象，clone()继承于Object而不是Cloneable接口
      */
     @Override
     protected WordDocument clone() {
@@ -161,8 +161,9 @@ public class Client {
     }
 ```
 
-输出结果如下 :  
-![result](images/result-2.png)       
+输出结果如下 : 
+![result](images/result-2.png)
+
 细心的朋友可能发现了，在doc2添加了一张名为"哈哈.jpg"的照片，但是却也显示在originDoc中？这是怎么回事呢？  其实学习过C++的朋友都知道，这是因为上文中WordDocument的clone方法中只是简单的进行浅拷贝，引用类型的新对象doc2的mImages只是单纯的指向了this.mImages引用，而并没有进行拷贝。doc2的mImages添加了新的图片，实际上也就是往originDoc里添加了新的图片，所以originDoc里面也有"哈哈.jpg" 。那如何解决这个问题呢？  那就是采用深拷贝，即在拷贝对象时，对于引用型的字段也要采用拷贝的形式，而不是单纯引用的形式。示例如下 :       
 
 ```java
@@ -184,10 +185,37 @@ public class Client {
     }
 ```
 
-如上代码所示，将doc.mImages指向this.mImages的一份拷贝， 而不是this.mImages本身，这样在doc2添加图片时并不会影响originDoc，如图所示 :      
+如上代码所示，将doc.mImages指向this.mImages的一份拷贝， 而不是this.mImages本身，这样在doc2添加图片时并不会影响originDoc，如图所示 : 
 ![result](images/result-3.png)        
 
 ## Android源码中的模式实现
+
+JDK中ArrayList的原型模式
+
+```java
+public class ArrayList<E> extends AbstractList<E>
+        implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+{	 
+  	// 元素数量，也就是这个列表的大小
+    private int size;
+  	// 实际存储数据的数组
+    transient Object[] elementData;
+  
+  	// 返回一个副本对象
+    public Object clone() {
+        try {
+            ArrayList<?> v = (ArrayList<?>) super.clone();
+            v.elementData = Arrays.copyOf(elementData, size);
+            v.modCount = 0;
+            return v;
+        } catch (CloneNotSupportedException e) {
+            // this shouldn't happen, since we are Cloneable
+            throw new InternalError(e);
+        }
+    }
+}
+```
+
 在Android源码中，我们以熟悉的Intent来分析源码中的原型模式。简单示例如下 :      
 
 ```java
@@ -243,8 +271,8 @@ public class Client {
 
 ## 4. 杂谈
 ### 优点与缺点
-* 优点    
-原型模式是在内存二进制流的拷贝，要比直接 new 一个对象性能好很多，特别是要在一个循环体内产生大量的对象时，原型模式可以更好地体现其优点。
+* 优点
+  原型模式是在内存二进制流的拷贝，要比直接 new 一个对象性能好很多，特别是要在一个循环体内产生大量的对象时，原型模式可以更好地体现其优点。
 
-* 缺点   
-这既是它的优点也是缺点，直接在内存中拷贝，构造函数是不会执行的，在实际开发当中应该注意这个潜在的问题。优点就是减少了约束，缺点也是减少了约束，需要大家在实际应用时考虑。
+* 缺点
+  这既是它的优点也是缺点，直接在内存中拷贝，构造函数是不会执行的，在实际开发当中应该注意这个潜在的问题。优点就是减少了约束，缺点也是减少了约束，需要大家在实际应用时考虑。

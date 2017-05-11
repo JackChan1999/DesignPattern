@@ -218,3 +218,8 @@ Proxy类接收一个IBinder参数，这个参数实际上就是服务端Service�
 
 #### 缺点
 * 会产生多余的代理类
+
+委托模式，委托机制，静态代理，动态代理
+
+- InvocationHandler
+- Proxy.newProxyInstance()

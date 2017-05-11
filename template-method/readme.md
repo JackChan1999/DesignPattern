@@ -7,20 +7,20 @@
 ## 1. 模式介绍  
 
 ###  模式的定义
-定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+定义一个操作中的算法的框架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。流程封装
 
 ### 模式的使用场景
-1. 多个子类有公有的方法，并且逻辑基本相同时。
-2. 重要、复杂的算法，可以把核心算法设计为模板方法，周边的相关细节功能则由各个子类实现。
-3. 重构时，模板方法模式是一个经常使用的模式，把相同的代码抽取到父类中，然后通过钩子函数约束其行为。
+- 多个子类有公有的方法，并且逻辑基本相同时。
+- 重要、复杂的算法，可以把核心算法设计为模板方法，周边的相关细节功能则由各个子类实现。
+- 重构时，模板方法模式是一个经常使用的模式，把相同的代码抽取到父类中，然后通过钩子函数约束其行为。
 
 ## 2. UML类图
 ![url](images/uml.png)  
 
 ### 角色介绍
-* AbstractClass : 抽象类，定义了一套算法框架。
-* ConcreteClass1 : 具体实现类1；
-* ConcreteClass2： 具体实现类2；
+* AbstractClass : 抽象类，定义了一套算法框架
+* ConcreteClass1 : 具体实现类1
+* ConcreteClass2： 具体实现类2
 
 ## 3. 模式的简单实现
 ###  简单实现的介绍
@@ -119,7 +119,7 @@ public class Test {
     }
 }
 
-```    
+```
 
 输出结果如下 :    
 
@@ -220,7 +220,7 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
             }
         };
     }
-```  
+```
 
 简单的说就是mFuture就包装了这个mWorker对象，会调用mWorker对象的call方法，并且将之返回给调用者。      
 
@@ -262,7 +262,7 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
         mStatus = Status.FINISHED;
     }
 
-```     
+```
 
 可以看到，postResult就是把一个消息( msg.what == MESSAGE_POST_RESULT)发送给sHandler，sHandler类型为InternalHandler类型，当InternalHandler接到MESSAGE_POST_RESULT类型的消息时就会调用result.mTask.finish(result.mData[0])方法。我们可以看到result为AsyncTaskResult类型，源码如下  :     
 
@@ -278,7 +278,7 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
             mData = data;
         }
     }
-```    
+```
 
 **可以看到mTask就是AsyncTask对象**，调用AsyncTask对象的finish方法时又调用了onPostExecute，这个时候整个执行过程就完成了。
 
@@ -287,6 +287,9 @@ mWorker和mFuture又是什么呢？其实mWorker只是实现了Callable接口，
 另一个比较好的模板方法示例就是Activity的声明周期函数，例如Activity从onCreate、onStart、onResume这些程式化的执行模板，这就是一个Activity的模板方法。       
 
 ## 4. 杂谈
+
+经典案例：AsyncTask，Activity的生命周期函数
+
 ### 优点与缺点
 #### 优点  
 * 封装不变部分，扩展可变部分
