@@ -48,13 +48,13 @@ MVP模式可以分离显示层和逻辑层，它们之间通过接口进行通�
 | View      | 用户界面，对应于Activity和xml，负责View的绘制以及与用户交互 |
 | Presenter | 交互中间人，负责完成View于Model间的交互和业务逻辑         |
 
-利用MVP的设计模型可以把部分的逻辑代码从Fragment和Activity业务的逻辑移出来，在Presenter中持有View（Activity或者Fragment）的引用，然后在Presenter调用View暴露的接口对视图进行操作，这样有利于把视图操作和业务逻辑分开来。MVP能够让Activity成为真正的View而不是View和Control的合体，Activity只做UI相关的事。但是这个模式还是存在一些不好的地方，比较如说：
+利用MVP的设计模型可以把部分的逻辑代码从Fragment和Activity业务的逻辑移出来，在Presenter中持有View（Activity或者Fragment）的引用，然后在Presenter调用View暴露的接口对视图进行操作，这样有利于把视图操作和业务逻辑分开来。MVP能够让Activity成为真正的View而不是View和Controler的合体，Activity只做UI相关的事。但是这个模式还是存在一些不好的地方，比较如说：
 
-- Activity需要实现各种跟UI相关的接口，同时要在Activity中编写大量的事件，然后在事件处理中调用presenter的业务处理方法，View和Presenter只是互相持有引用并互相做回调,代码不美观。
+- Activity需要实现各种跟UI相关的接口，同时要在Activity中编写大量的事件，然后在事件处理中调用Presenter的业务处理方法，View和Presenter只是互相持有引用并互相做回调,代码不美观。
 
 - 这种模式中，程序的主角是UI，通过UI事件的触发对数据进行处理，更新UI就要考虑线程的问题。而且UI改变后牵扯的逻辑耦合度太高，一旦控件更改（比较TextView 替换 EditText等）牵扯的更新UI的接口就必须得换。
 
-- 复杂的业务同时会导致presenter层太大，代码臃肿的问题。
+- 复杂的业务同时会导致Presenter层太大，代码臃肿的问题。
 
 切断的View和Model的联系，让View只和Presenter（原Controller）交互，减少在需求变化中需要维护的对象的数量。MVP定义了Presenter和View之间的接口，让一些可以根据已有的接口协议去各自分别独立开发，以此去解决界面需求变化频繁的问题
 
@@ -89,6 +89,20 @@ View通常是指Activity、Fragment或者某个View控件，它含有一个Prese
 - Model – 数据的存取
 
 Model 角色主要是提供数据的存取功能。Presenter 需要通过Model层存储、获取数据，Model就像一个数据仓库。更直白的说，Model是封装了数据库DAO或者网络获取数据的角色，或者两种数据方式获取的集合。
+
+### 2.3 MVP的实现
+
+![](img/architecture.png)
+
+角色介绍 :
+
+- User Interface : 用户界面，通过接口抽象函数功能，解除Presenter与具体UI的耦合；
+- Presenters : 业务逻辑层，作为UI与Model、网络操作的中间人，接触业务逻辑与UI的耦合；
+- Network : 网络操作层，处理http请求;
+- Models : 数据的增删改查操作，例如数据库操作；
+- Database : 数据持久层，SQLite;
+
+使用MVP架构模式，将业务逻辑与UI、数据操作隔离开来，保持灵活性，拥抱变化。
 
 ## 3. MVVM设计模式
 ![mvvm模式](../assets/designpattern20)
@@ -570,7 +584,7 @@ public class User {
 
 MVVM模式使用到Data Binding，需要在build.gradle文件中配置
 
-```grad
+```gradle
 apply plugin: 'com.android.application'
 
 android {
