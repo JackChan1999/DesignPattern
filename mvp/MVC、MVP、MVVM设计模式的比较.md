@@ -204,7 +204,9 @@ presenter.login();
 
 ### 深入解析
 
-在操作中会使用到@Inject、@Module、@Provides、@Conponent注解，那么他们分别在完成什么工作？
+在操作中会使用到@Inject、@Module、@Provides、@Conponent注解，那么他们分别在完成什么工作?
+
+![](https://user-gold-cdn.xitu.io/2016/11/29/f0cfbf0aaa8a48fd5c889a7d0aee21e8.jpg)
 
 | 注解         | 功能说明                                     |
 | :--------- | :--------------------------------------- |
@@ -212,6 +214,10 @@ presenter.login();
 | @Conponent | 用来将@Inject和@Module联系起来的桥梁，从@Module中获取依赖并将依赖注入给@Inject。一个接口或者抽象类，在这个接口中定义了一个inject()方法，rebuild一下项目，会生成一个以Dagger为前缀的Component类。 |
 | @Module    | 用来提供依赖，为那些没有构造函数的类提供依赖，比如第三方类库，系统类。里面定义一些用@Provides注解的以provide开头的方法，这些方法就是所提供的依赖，Dagger2会在该类中寻找实例化某个类所需要的依赖 |
 | @Provides  | Module中的创建类实例方法用Provides进行标注             |
+| @Qualifier | 通过自定义Qulifier，可以告诉Dagger2去需找具体的依赖提供者。 帮助我们去为相同接口的依赖创建“tags” |
+| @Scope     | 在作用域内保持单例，可以直接理解为单例即可。同属于一个作用域的时候会公用一个相同的实例 |
+| @MapKey    | 这个注解用在定义一些依赖集合                           |
+| @Singleton | @Singleton并不是我们设计模式中的单例模式，而是Dagger2中为了保持一个产品在一个Scope中只有一个对象的标签 |
 ### Component
 
 Component需要引用到目标类的实例，Component会查找目标类中用Inject注解标注的属性，查找到相应的属性后会接着查找该属性对应的用Inject标注的构造函数，剩下的工作就是初始化该属性的实例并把实例进行赋值
@@ -228,7 +234,62 @@ Module里面的方法基本都是创建类实例的方法。
 
 Module中的创建类实例方法用Provides进行标注，Component在搜索到目标类中用Inject注解标注的属性后，Component就会去Module中去查找用Provides标注的对应的创建类实例方法，这样就可以解决第三方类库用dagger2实现依赖注入了
 
-### Qualifier限定符：解决依赖注入迷失问题
+### Qualifier
+
+限定符：解决依赖注入迷失问题
+
+```java
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+public @interface A {}
+```
+
+```java
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+public @interface B {}
+```
+
+我们定义了两个注解，@A和@B，他们都是用@Qulifiier标注的
+
+再看看我们的Module
+
+```java
+@Module
+public class SimpleModule {
+    @Provides
+    @A
+    Cooker provideCookerA(){
+        return new Cooker("James","Espresso");
+    }
+    @Provides
+    @B
+    Cooker provideCookerB(){
+        return new Cooker("Karry","Machiato");
+    }
+    }
+```
+
+再看看具体的使用
+
+```java
+public class ComplexMaker implements CoffeeMaker {
+    Cooker cookerA;
+    Cooker cookerB;
+    @Inject
+    public ComplexMaker(@A Cooker cookerA,@B Cooker cookerB){
+        this.cookerA = cookerA;
+        this.cookerB = cookerB;
+    }
+    @Override
+    public String makeCoffee() {
+        return cooker.make();
+    }
+    }
+
+cookerA.make();//James make Espresso
+cookerB.make();//Karry make Machiato
+```
 
 ### Singleton单例
 
@@ -256,7 +317,17 @@ public interface ActivityComponent {
 }
 ```
 
-### SubComponent：以包含方式组织Component之间的关系
+### SubComponent
+
+以包含方式组织Component之间的关系
+
+```java
+@PerActivity
+@Subcomponent
+public interface MainFragmentComponent {
+    void inject(MainFragment mainFragment);
+}
+```
 
 ```java
 @PerActivity
@@ -265,15 +336,6 @@ public interface MainComponent extends ActivityComponent{
     //对MainActivity进行依赖注入
     void inject(MainActivity mainActivity);
     MainFragmentComponent mainFragmentComponent();
-}
-```
-
-```java
-@PerActivity
-@Subcomponent
-public interface MainFragmentComponent {
-    
-    void inject(MainFragment mainFragment);
 }
 ```
 
