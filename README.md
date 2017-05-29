@@ -95,7 +95,14 @@ https://alleniverson.gitbooks.io/design-pattern/content
   * [桥接模式](bridge/readme.md)
   * [原型模式1](prototype/readme.md)
   * [原型模式2](prototype/Android源码分析之原型模式.md)
-  * [MVC、MVP、MVVM设计模式的比较](mvp/MVC、MVP、MVVM设计模式的比较.md)
+
+* [MVP,MVVM设计模式](mvp/README.md)
+  * [MVC设计模式](mvp/MVC设计模式.md)
+  * [MVP设计模式](mvp/MVP设计模式.md)
+  * [Dagger2依赖注入](mvp/Dagger2依赖注入.md)
+  * [MVVM设计模式](mvp/MVVM设计模式.md)
+  * [DataBinding](mvp/DataBinding.md)
+  * [MVC,MVP,MVVM设计模式实例](mvp/MVC,MVP,MVVM设计模式实例.md)
 
 ## 关注我
 
