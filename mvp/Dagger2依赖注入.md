@@ -21,14 +21,14 @@ Dagger2主要用于做界面和业务之间的隔离
 ### 1.4 引入配置
 
 添加dagger2的依赖
-```
+```gradle
 compile 'com.google.dagger:dagger:2.6'
 ```
 编译时生成代码的插件配置（android-apt）
 
 - project的gradle中添加
 
-```
+```gradle
 buildscript {
 		dependencies {
   			classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -39,12 +39,12 @@ buildscript {
 
 modle的gradle中添加
 
-```
+```gradle
 apply plugin: 'com.neenbedankt.android-apt'
 ```
 - 关联Dagger2
 
-```
+```gradle
 dependencies {
 	apt 'com.google.dagger:dagger-compiler:2.6'
 }
@@ -99,7 +99,7 @@ presenter.login();
 
 在操作中会使用到@Inject、@Module、@Provides、@Conponent注解，那么他们分别在完成什么工作?
 
-![](https://user-gold-cdn.xitu.io/2016/11/29/f0cfbf0aaa8a48fd5c889a7d0aee21e8.jpg)
+![](https://alleniverson.gitbooks.io/android-opensource-framework/content/inject/img/injection.jpg)
 
 | 注解            | 功能说明                                     |
 | :------------ | :--------------------------------------- |
