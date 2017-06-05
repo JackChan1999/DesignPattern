@@ -3,6 +3,15 @@ typora-copy-images-to: img
 ---
 ## 1. MVP设计模式
 
+随着UI创建技术的功能日益增强，UI层也履行着越来越多的职责。为了更好地细分视图(View)与模型(Model)的功能，让View专注于处理数据的可视化以及与用户的交互，同时让Model只关系数据的处理，基于MVC概念的MVP(ModelViewPresenter)模式应运而生。
+
+在MVP模式里通常包含4个要素：
+
+- View：负责绘制UI元素、与用户进行交互(在Android中体现为Activity(fragment)，Activity(fragment)只控制界面的数据展示和与用户的交互)
+- View interface：需要View实现的接口，View通过View interface与Presenter进行交互，降低耦合，方便进行单元测试
+- Model：负责存储、检索、操纵数据(有时也实现一个Model interface用来降低耦合)
+- Presenter：作为View与Model交互的中间纽带，处理与用户交互的负责逻辑。
+
 MVP模式可以分离显示层和逻辑层，它们之间通过接口进行通信，降低耦合。MVP能够有效降低View复杂性，避免业务逻辑塞进View中，使得View变成一个混乱的“大泥坑”。
 
 ![mvp模式](img/mvp.png)

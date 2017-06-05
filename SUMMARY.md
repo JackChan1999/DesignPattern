@@ -19,6 +19,7 @@
   * [开闭原则](design-pattern/设计模式六大原则6-开闭原则.md)
   * [面向对象六大原则1](oop-principles/面向对象六大原则.md)
   * [面向对象六大原则2](oop-principles/oop-principles.md)
+  * [Java程序员应当知道的10个面向对象设计原则](oop-principles/Java程序员应当知道的10个面向对象设计原则.md)
   * [软件设计之高内聚低耦合](oop-principles/软件设计之高内聚低耦合.md)
 
 ----
