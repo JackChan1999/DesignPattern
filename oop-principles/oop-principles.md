@@ -17,6 +17,8 @@
 
 试想一下，如果你遵守了这个原则，那么你的类就会划分得很细，每个类都有自己的职责。恩，这不就是高内聚、低耦合么！ 当然，如何界定类的职责这需要你的个人经验了。      
 
+ 一个类只做一类事情。为此，我们应该多用类的引用，而不是类的继承。
+
 ### 1.2 示例
 
 在Volley中，我觉得很能够体现SRP原则的就是HttpStack这个类族了。HttpStack定义了一个执行网络请求的接口，代码如下 :
@@ -33,7 +35,7 @@ public interface HttpStack {
         throws IOException, AuthFailureError;
 
 }
-```    
+```
 可以看到，HttpStack只有一个函数，清晰明了，它的职责就是执行网络请求并且返回一个Response。它的职责很单一，这样在需要修改执行网络请求的相关代码时我们只需要修改实现HttpStack接口的类，而不会影响其它的类的代码。如果某个类的职责包含有执行网络请求、解析网络请求、进行gzip压缩、封装请求参数等等，那么在你修改某处代码时你就必须谨慎，以免修改的代码影响了其它的功能。但是当职责单一的时候，你修改的代码能够基本上不影响其它的功能。这就在一定程度上保证了代码的可维护性。**注意，单一职责原则并不是说一个类只有一个函数，而是说这个类中的函数所做的工作必须要是高度相关的，也就是高内聚**。HttpStack抽象了执行网络请求的具体过程，接口简单清晰，也便于扩展。     
 
 我们知道，Api 9以下使用HttpClient执行网络请求会好一些，api 9及其以上则建议使用HttpURLConnection。这就需要执行网络请求的具体实现能够可扩展、可替换，因此我们对于执行网络请求这个功能必须要抽象出来，HttpStack就是这个职责的抽象。
@@ -81,7 +83,7 @@ public interface HttpStack {
 
         return queue;
     }
-```   
+```
 
 BasicNetwork的代码如下:      
 
@@ -106,7 +108,7 @@ public class BasicNetwork implements Network {
         mPool = pool;
     }
 }
-```       
+```
 
 上述代码中，BasicNetwork构造函数依赖的是HttpStack抽象接口，任何实现了HttpStack接口的类型都可以作为参数传递给BasicNetwork用以执行网络请求。这就是所谓的里氏替换原则，任何父类出现的地方子类都可以出现，这不就保证了可扩展性吗？！ 此时，用手撑着你的小脑门作思考状...  任何实现HttpStack接口的类的对象都可以传递给BasicNetwork实现网络请求的功能，这样Volley执行网络请求的方法就有很多种可能性，而不是只有HttpClient和HttpURLConnection。       
 
@@ -139,7 +141,7 @@ public class BasicNetwork implements Network {
 ### 3.2 示例
 
 采用依赖倒置原则可以减少类间的耦合性，提高系统的稳定性，降低并行开发引起的风险，提高代码的可读性和可维护性
-    
+​    
 第二章节中的BasicNetwork实现类依赖于HttpStack接口( 抽象 )，而不依赖于HttpClientStack与HurlStack实现类 ( 细节 )，这就是典型的依赖倒置原则的体现。假如BasicNetwork直接依赖了HttpClientStack，那么HurlStack就不能传递给了，除非HurlStack继承自HttpClientStack。但这么设计明显不符合逻辑，HurlStack与HttpClientStack并没有任何的is-a的关系，而且即使有也不能这么设计，因为HttpClientStack是一个具体类而不是抽象，如果HttpClientStack作为BasicNetwork构造函数的参数，那么以为这后续的扩展都需要继承自HttpClientStack。这简直是一件不可忍受的事了！        
 
 ### 3.3 优点
@@ -181,7 +183,7 @@ public class JsonObjectRequest extends JsonRequest<JSONObject> {
         }
     }
 }
-```       
+```
 JsonObjectRequest通过实现Request抽象类的parseNetworkResponse解析服务器返回的结果，这里将结果转换为JSONObject，并且封装到Response类中。     
 
 例如Volley添加对图片请求的支持，即ImageLoader( 已内置 )。这个时候我的请求返回的数据是Bitmap图片。因此我需要在该类型的Request得到的结果是Request，但支持一种数据格式不能通过修改源码的形式，这样可能会为旧代码引入错误。但是你又需要支持新的数据格式，此时我们的开闭原则就很重要了，对扩展开放，对修改关闭。我们看看Volley是如何做的。        
@@ -259,7 +261,7 @@ public class ImageRequest extends Request<Bitmap> {
         }
     }
 }
-```    
+```
 需要添加某种数据格式的Request时，只需要继承自Request类，并且实现相应的方法即可。这样通过扩展的形式来应对软件的变化或者说用户需求的多样性，即避免了破坏原有系统，又保证了软件系统的可扩展性。     
 
 ### 4.3 优点
@@ -296,7 +298,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
                 right.ordinal() - left.ordinal();
     }
 }
-```    
+```
 
 PriorityBlockingQueue类相关代码 :     
 
@@ -346,7 +348,7 @@ public class PriorityBlockingQueue<E> extends AbstractQueue<E>
         array[k] = key;
     }
  }
-```     
+```
 从PriorityBlockingQueue的代码可知,在元素排序时，PriorityBlockingQueue只需要知道元素是个Comparable对象即可，不需要知道这个对象是不是Request类以及这个类的其他接口。它只需要排序，因此我只要知道它是实现了Comparable接口的对象即可，Comparable就是它的最小接口，也是通过Comparable隔离了PriorityBlockingQueue类对Request类的其他方法的可见性。妙哉，妙哉！      
 
 ### 5.3 优点
@@ -401,7 +403,7 @@ public interface Cache {
     public void clear();
 
 }
-```    
+```
 Cache接口定义了缓存类需要实现的最小接口，依赖缓存类的对象只需要知道这些接口即可。例如缓存的具体实现类DiskBasedCache，该缓存类将Response序列化到本地,这就需要操作File以及相关的类。代码如下 :       
 
 ```java
@@ -426,7 +428,7 @@ public class DiskBasedCache implements Cache {
 
 	// 代码省略
 }
-```     
+```
 在这里，Volley的直接朋友就是DiskBasedCache，间接朋友就是mRootDirectory、mEntries等。Volley只需要直接和Cache类交互即可，并不需要知道File、mEntries等对象的存在。这就是迪米特原则，尽量少的知道对象的信息，只与直接的朋友交互。       
 
 
