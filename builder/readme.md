@@ -231,6 +231,7 @@ public class Test {
 ```
 
 结果 : 
+
 ![result](images/result.png)     
 
 下面我们看看AlertDialog的相关源码 :

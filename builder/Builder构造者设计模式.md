@@ -37,6 +37,8 @@
 
 是指那些包含多个成员属性的对象，这些成员属性也称为部件或零件，如程序猿要会识字、会数学、会编程语言，会设计模式等等。
 
+**Builder模式示例代码**
+
 ```java
 package org.effectivejava.examples.chapter02.item02.builder;
 
@@ -99,11 +101,14 @@ public class NutritionFacts {
     }
 
     public static void main(String[] args) {
-        NutritionFacts cocaCola = new NutritionFacts.Builder(240, 8)
-                .calories(100).sodium(35).carbohydrate(27).build();
+        NutritionFacts cocaCola = new NutritionFacts
+          .Builder(240, 8)
+          .calories(100)
+          .sodium(35)
+          .carbohydrate(27)
+          .build();
     }
 }
-
 ```
 ## 4. 经典案例
 ### 4.1 AlertDialog

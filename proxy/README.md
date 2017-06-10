@@ -6,7 +6,7 @@
 
 # Binder中的代理模式
 
-再说Binder中的代理模式之前，我们需要先看看代理模式的简单实现，这一部分内容采用了[《JAVA与模式》之代理模式](http://www.cnblogs.com/java-my-life/archive/2012/04/23/2466712.html)这篇文章中的代码示例和uml类图。
+在说Binder中的代理模式之前，我们需要先看看代理模式的简单实现，这一部分内容采用了[《JAVA与模式》之代理模式](http://www.cnblogs.com/java-my-life/archive/2012/04/23/2466712.html)这篇文章中的代码示例和uml类图。
 
 ## 1. 模式介绍
 
