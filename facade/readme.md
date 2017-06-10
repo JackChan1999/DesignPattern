@@ -1,13 +1,15 @@
 # Android设计模式源码解析之外观模式(Facade)
 
-> 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 外观模式 分析  
-> Android系统版本： 2.3         
+> 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 外观模式 分析
+> Android系统版本： 2.3 
 > 分析者：[elsdnwn](https://github.com/elsdnwn)、[Mr.Simple](https://github.com/bboyfeiyu)，分析状态：已完成，校对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：未开始   
 
 ## 1. 模式介绍  
 
 ###  模式的定义
 外观模式(也成为门面模式)要求一个子系统的外部与其内部的通信必须通过一个统一的对象进行。它提供一个高层次的接口，使得子系统更易于使用。
+
+外观模式就是统一接口封装。将子系统的逻辑、交互隐藏起来，为用户提供一个高层次的接口，使得系统更加易用，同时也对外隐藏了具体的实现，这样即使具体的子系统发生了变化，用户也不会感知到，因为用户使用的是Facade高层接口，内部变化对于用户来说并不可见。这样一来就将变化隔离开来，使得系统也更为灵活。
 
 ### 模式的使用场景
 
@@ -301,7 +303,7 @@ private final void handleLaunchActivity(ActivityClientRecord r, Intent customInt
         }
         return r;
     }
-```    
+```
 
 Activity启动之后，Android给我们提供了操作系统服务的统一入口，也就是Activity本身。这些工作并不是Activity自己实现的，而是将操作委托给Activity父类ContextThemeWrapper的mBase对象，这个对象的实现类就是ContextImpl ( 也就是performLaunchActivity方法中构建的ContextImpl )。
 
