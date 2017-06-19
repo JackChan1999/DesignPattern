@@ -18,9 +18,9 @@
 
 适配器模式也分两种，即类适配器模式、对象适配器模式，结构图如图1、图2。
 
-![](images/adapter1)
+![](images/adapter3.png)
 
-![](images/adapter2)
+![](images/adapter2.png)
 
 如图所示，类适配器是通过实现Target接口以及继承Adaptee类来实现接口转换，而对象适配器模式则是通过实现Target接口和代理Adaptee的某个方法来实现。结构上略有不同。           
 
