@@ -8,7 +8,7 @@
 
 ## 3. UML类图
 
-![](http://img.blog.csdn.net/20140422145222703?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYmJveWZlaXl1/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![抽象工厂模式](img/抽象工厂模式.png)
 
 
 ## 4. 角色介绍
