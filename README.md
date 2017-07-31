@@ -1,3 +1,9 @@
+## 设计模式系列
+
+- [Java设计模式](https://www.gitbook.com/book/alleniverson/java-design-patterns/details)
+- [Java和Android设计模式](https://www.gitbook.com/book/alleniverson/design-pattern/details)
+- [C/C++设计模式](https://www.gitbook.com/book/alleniverson/cpp_design_pattern/details)
+
 # 23 种设计模式
 
 设计模式是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。本文将介绍23种设计模式。
