@@ -1,4 +1,4 @@
-## 设计模式系列
+# 设计模式系列
 
 - [Java设计模式](https://www.gitbook.com/book/alleniverson/java-design-patterns/details)
 - [Java和Android设计模式](https://www.gitbook.com/book/alleniverson/design-pattern/details)
@@ -30,7 +30,7 @@ https://github.com/JackChen1999/DesignPattern
 
 https://alleniverson.gitbooks.io/design-pattern/content
 
-# 设计模式
+# 目录
 
 * [前言](README.md)
 
@@ -53,6 +53,7 @@ https://alleniverson.gitbooks.io/design-pattern/content
   * [软件设计之高内聚低耦合](oop-principles/软件设计之高内聚低耦合.md)
 
 * [23种设计模式](design-pattern/README.md)
+  * [单例模式的Java和Kotlin实现](singleton/单例模式的Java和Kotlin实现.md)
   * [单例模式1](design-pattern/23种设计模式1-单例模式.md)
   * [单例模式2](singleton/单例模式1.md)
   * [单例模式3](singleton/单例模式2.md)
@@ -111,7 +112,7 @@ https://alleniverson.gitbooks.io/design-pattern/content
   * [DataBinding](mvp/DataBinding.md)
   * [MVC,MVP,MVVM设计模式实例](mvp/MVC,MVP,MVVM设计模式实例.md)
 
-## 关注我
+# 关注我
 
 对于一个开发者而言，能够胜任系统中任意一个模块的开发是其核心价值的体现。
 

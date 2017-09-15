@@ -25,6 +25,7 @@
 ----
 
 * [23种设计模式](design-pattern/README.md)
+  * [单例模式的Java和Kotlin实现](singleton/单例模式的Java和Kotlin实现.md)
   * [单例模式1](design-pattern/23种设计模式1-单例模式.md)
   * [单例模式2](singleton/单例模式1.md)
   * [单例模式3](singleton/单例模式2.md)
