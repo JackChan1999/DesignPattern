@@ -1,9 +1,5 @@
 # Android设计模式源码解析之观察者模式
 
-> 本文为 [Android 设计模式源码解析](https://github.com/simple-android-framework-exchange/android_design_patterns_analysis) 中 观察者模式 分析 
-> [Android](http://lib.csdn.net/base/android)系统版本： 2.3 
-> 分析者：[Mr.Simple](https://github.com/bboyfeiyu)，分析状态：未完成，校对者：[Mr.Simple](https://github.com/bboyfeiyu)，校对状态：未开始
-
 ## 1. 模式介绍
 
 ### 模式的定义
@@ -18,7 +14,7 @@
 
 ## 2. UML类图
 
-![uml](http://img.blog.csdn.net/20150303170429313)
+![uml](images/observer_1.png)
 
 ### 角色介绍
 
@@ -37,7 +33,7 @@
 
 [AndroidWeekly](http://androidweekly.net/)是一个每周都会发布关于Android新技术、开源库、招聘信息等内容的网站，在这里我们可以看到最新的技术，最牛X的工程师，经常逛逛这类网站不仅能够开阔我们的眼界，也能让我们接触到最前言的科技信息。这其实就是一个RSS系统，用户订阅Android Weekly的文章，每当有更新的时候将新的内容推送给订阅用户。这不就是观察者模式吗？观察者模式的另一个名字叫做发布-订阅模式，下图就是我订阅AndroidWeekly之后他们发来的确认邮件。下面让我们来简单模拟一下AndroidWeekly的发布过程吧！
 
-![android-weekly](http://img.blog.csdn.net/20150303170458719)
+![android-weekly](images/observer_2.png)
 
 ### 实现源码
 
@@ -293,7 +289,7 @@ AdapterDataSetObserver定义在ListView的父类AbsListView中，代码如下 :
 
 最后我们再捋一捋,AdapterView中有一个内部类AdapterDataSetObserver,在ListView设置Adapter时会构建一个AdapterDataSetObserver，并且注册到Adapter中，这个就是一个观察者。而Adapter中包含一个数据集可观察者DataSetObservable，在数据数量发生变更时开发者手动调用AdapternotifyDataSetChanged，而notifyDataSetChanged实际上会调用DataSetObservable的notifyChanged函数，该函数会遍历所有观察者的onChanged函数。在AdapterDataSetObserver的onChanged函数中会获取Adapter中数据集的新数量，然后调用ListView的requestLayout()方法重新进行布局，更新用户界面
 
-![img1](http://img.blog.csdn.net/20150303170502721)  ![img1](http://img.blog.csdn.net/20150303170557615)  
+![img1](images/observer_3.png) ![img1](images/observer_4.png)
 
 这篇文章来自SAOS开源项目组，关于SAOS的介绍请参考[Android开源库与设计模式开源组SAOS](http://blog.csdn.net/bboyfeiyu/article/details/44006189)，更多文章请移步到[SAOS开源项目组](https://github.com/simple-android-framework-exchange); 欢迎加入Android框架设计交流群 ，群号码：413864859。
 

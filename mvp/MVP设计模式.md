@@ -3,6 +3,8 @@ typora-copy-images-to: img
 ---
 ## 1. MVP设计模式
 
+![](img/MVP_Beam.png)
+
 随着UI创建技术的功能日益增强，UI层也履行着越来越多的职责。为了更好地细分视图(View)与模型(Model)的功能，让View专注于处理数据的可视化以及与用户的交互，同时让Model只关系数据的处理，基于MVC概念的MVP(ModelViewPresenter)模式应运而生。
 
 在MVP模式里通常包含4个要素：
