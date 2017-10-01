@@ -3,8 +3,6 @@ typora-copy-images-to: img
 ---
 ## 1. MVP设计模式
 
-![](img/MVP_Beam.png)
-
 随着UI创建技术的功能日益增强，UI层也履行着越来越多的职责。为了更好地细分视图(View)与模型(Model)的功能，让View专注于处理数据的可视化以及与用户的交互，同时让Model只关系数据的处理，基于MVC概念的MVP(ModelViewPresenter)模式应运而生。
 
 在MVP模式里通常包含4个要素：
@@ -39,6 +37,40 @@ MVP模式是MVC模式的一个演化版本，MVP全称Model-View-Presenter。目
 在Android中，业务逻辑和数据存取是紧紧耦合的，很多缺乏经验的开发者很可能会将各种各样的业务逻辑塞进某个Activity、Fragment或者自定义View中，这样会使得这些组件的单个类型臃肿不堪。如果不将具体的业务逻辑抽离出来，当UI变化时，你就需要去原来的View中抽离具体业务逻辑，这必然会很麻烦并且易出错。
 
 对于view层和presenter层的通信，我们是可以通过接口实现的，具体的意思就是说我们的activity，fragment可以去实现实现定义好的接口，而在对应的presenter中通过接口调用方法。
+
+所谓MVP(Model-View-Presenter)模式。是将APP的结构分为三层：  
+
+### view - UI显示层
+
+view 层主要负责：
+
+1. 提供UI交互
+2. 在presenter的控制下修改UI。 
+3. 将业务事件交由presenter处理。
+
+注意. View层不存储数据，不与Model层交互。
+
+### presenter - 逻辑处理层
+
+presenter 层主要负责：
+
+1. 对UI的各种业务事件进行相应处理。也许是与Model层交互，也许自己进行一些计算，也许控制后台Task，Servic
+2. 对各种订阅事件进行响应，修改UI。
+3. 临时存储页面相关数据。
+
+注意. Presenter内不出现View引用。
+
+### model - 数据层
+
+model层主要负责：
+
+1. 从网络，数据库，文件，传感器，第三方等数据源读写数据。  
+2. 对外部的数据类型进行解析转换为APP内部数据交由上层处理。  
+3. 对数据的临时存储,管理，协调上层数据请求。    
+
+如图示，里面的activity，presenter，model均为例子：
+
+![](img/MVP_Beam.png)
 
 将activity中的业务部分拆分—mvp，使用接口实现view和presenter的通信和隔离，这种方式有一个缺点，就是接口会非常多
 
