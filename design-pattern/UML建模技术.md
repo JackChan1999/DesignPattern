@@ -188,9 +188,9 @@ l有时候接口也使用普通类的举行符号表示
 
 在[Java](http://lib.csdn.net/base/javase)以及其他的面向对象设计模式中，类与类之间主要有6种关系，他们分别是：依赖、关联、聚合、组合、继承、实现。他们的耦合度依次增强。
 
-## 1. 依赖（Dependence） ![img](../assets/uml1.gif)
+## 1. 依赖（Dependence） ![img](img/uml1.gif)
 
-![img](../assets/uml2.gif)
+![img](img/uml2.gif)
 
 依赖关系的定义为：对于两个相对独立的对象，当一个对象负责构造另一个对象的实例，或者依赖另一个对象的服务时，这两个对象之间主要体现为依赖关系。定义比较晦涩难懂，但在java中的表现还是比较直观的：类A当中使用了类B，其中类B是作为类A的方法参数、方法中的局部变量、或者静态方法调用。类上面的图例中：People类依赖于Book类和Food类，Book类和Food类是作为类中方法的参数形式出现在People类中的。
 
@@ -205,15 +205,15 @@ public class People{
 }  
 ```
 
-## 2. 关联（Association）![img](../assets/uml3.gif)、![img](../assets/uml4.gif)、![img](../assets/uml5.gif)
+## 2. 关联（Association）![img](img/uml3.gif)、![img](img/uml4.gif)、![img](img/uml5.gif)
 
 **单向关联：**
 
-![img](../assets/uml6.gif)
+![img](img/uml6.gif)
 
 **双向关联：**
 
-![img](../assets/uml7.gif)
+![img](img/uml7.gif)
 
 对于两个相对独立的对象，当一个对象的实例与另一个对象的一些特定实例存在固定的对应关系时，这两个对象之间为关联关系。关联关系分为单向关联和双向关联。在java中，单向关联表现为：类A当中使用了类B，其中类B是作为类A的成员变量。双向关联表现为：类A当中使用了类B作为成员变量；同时类B中也使用了类A作为成员变量。
 
@@ -236,9 +236,9 @@ public class Father{
  }  
 ```
 
-## 3. 聚合（Aggregation）![img](../assets/uml8.gif)
+## 3. 聚合（Aggregation）![img](img/uml8.gif)
 
-![img](../assets/uml9.gif)
+![img](img/uml9.gif)
 
 聚合关系是关联关系的一种，耦合度强于关联，他们的代码表现是相同的，仅仅是在语义上有所区别：关联关系的对象间是相互独立的，而聚合关系的对象之间存在着包容关系，他们之间是“整体-个体”的相互关系。
 
@@ -265,9 +265,9 @@ public class People{
  }  
 ```
 
-## 4. 组合（Composition）![img](../assets/uml10.gif)
+## 4. 组合（Composition）![img](img/uml10.gif)
 
-![img](../assets/uml11.gif)
+![img](img/uml11.gif)
 
 相比于聚合，组合是一种耦合度更强的关联关系。存在组合关系的类表示“整体-部分”的关联关系，“整体”负责“部分”的生命周期，他们之间是共生共死的；并且“部分”单独存在时没有任何意义。在下图的例子中，People与Soul、Body之间是组合关系，当人的生命周期开始时，必须同时有灵魂和肉体；当人的生命周期结束时，灵魂肉体随之消亡；无论是灵魂还是肉体，都不能单独存在，他们必须作为人的组成部分存在。
 
@@ -290,15 +290,15 @@ Public class People{
  }  
 ```
 
-## 5. 继承（Generalization）![img](../assets/uml12.gif)
+## 5. 继承（Generalization）![img](img/uml12.gif)
 
-![img](../assets/uml13.gif)
+![img](img/uml13.gif)
 
 继承表示类与类（或者接口与接口）之间的父子关系。在java中，用关键字extends表示继承关系。UML图例中，继承关系用实线+空心箭头表示，箭头指向父类。
 
-## 6. 实现（Implementation）![img](../assets/uml14.gif)
+## 6. 实现（Implementation）![img](img/uml14.gif)
 
-![img](../assets/uml15.gif)
+![img](img/uml15.gif)
 
 表示一个类实现一个或多个接口的方法。接口定义好操作的集合，由实现类去完成接口的具体操作。在java中使用implements表示。UML图例中，实现关系用虚线+空心箭头表示，箭头指向接口。
 
