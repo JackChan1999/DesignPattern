@@ -122,7 +122,7 @@ https://alleniverson.gitbooks.io/design-pattern/content
 
 每一个程序员都不能固步自封，要多接触新的行业，新的技术领域，突破自我。
 
-- Email：<815712739@qq.com>
+- Email：<619888095@qq.com>
 - CSDN博客：[Allen Iverson](http://blog.csdn.net/axi295309066)
 - 新浪微博：[AndroidDeveloper](http://weibo.com/u/1848214604?topnav=1&wvr=6&topsug=1&is_all=1)
 - GitHub：[JackChan1999](https://github.com/JackChan1999)

@@ -111,3 +111,13 @@ Model 角色主要是提供数据的存取功能。Presenter 需要通过Model�
 - Database : 数据持久层，SQLite
 
 使用MVP架构模式，将业务逻辑与UI、数据操作隔离开来，保持灵活性，拥抱变化。
+
+## 2. MVP快速开发框架
+
+- [Jude95 Beam ](https://github.com/Jude95/Beam)
+
+  一套基于MVP模式的快速开发框架。定义了一套开发规范。并提供了基于这套规范的Activity，Fragment，Presenter，Model等父类及控件和API等，完成APP开发过程中大量繁琐工作。
+
+- [nucleus](https://github.com/konmik/nucleus)
+
+  Nucleus is an Android library, which utilizes the Model-View-Presenter pattern to properly connect background tasks with visual parts of an application.
