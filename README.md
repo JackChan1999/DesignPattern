@@ -3,6 +3,7 @@
 - [Java设计模式](https://www.gitbook.com/book/alleniverson/java-design-patterns/details)
 - [Java和Android设计模式](https://www.gitbook.com/book/alleniverson/design-pattern/details)
 - [C/C++设计模式](https://www.gitbook.com/book/alleniverson/cpp_design_pattern/details)
+- [java-design-patterns](https://github.com/iluwatar/java-design-patterns)
 
 # 23 种设计模式
 
