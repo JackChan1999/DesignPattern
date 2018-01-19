@@ -38,6 +38,40 @@ MVP模式是MVC模式的一个演化版本，MVP全称Model-View-Presenter。目
 
 对于view层和presenter层的通信，我们是可以通过接口实现的，具体的意思就是说我们的activity，fragment可以去实现实现定义好的接口，而在对应的presenter中通过接口调用方法。
 
+所谓MVP(Model-View-Presenter)模式。是将APP的结构分为三层：  
+
+### view - UI显示层
+
+view 层主要负责：
+
+1. 提供UI交互
+2. 在presenter的控制下修改UI。 
+3. 将业务事件交由presenter处理。
+
+注意. View层不存储数据，不与Model层交互。
+
+### presenter - 逻辑处理层
+
+presenter 层主要负责：
+
+1. 对UI的各种业务事件进行相应处理。也许是与Model层交互，也许自己进行一些计算，也许控制后台Task，Servic
+2. 对各种订阅事件进行响应，修改UI。
+3. 临时存储页面相关数据。
+
+注意. Presenter内不出现View引用。
+
+### model - 数据层
+
+model层主要负责：
+
+1. 从网络，数据库，文件，传感器，第三方等数据源读写数据。  
+2. 对外部的数据类型进行解析转换为APP内部数据交由上层处理。  
+3. 对数据的临时存储,管理，协调上层数据请求。    
+
+如图示，里面的activity，presenter，model均为例子：
+
+![](img/MVP_Beam.png)
+
 将activity中的业务部分拆分—mvp，使用接口实现view和presenter的通信和隔离，这种方式有一个缺点，就是接口会非常多
 
 将activity中的界面相关内容拆分—mvvm
@@ -77,3 +111,13 @@ Model 角色主要是提供数据的存取功能。Presenter 需要通过Model�
 - Database : 数据持久层，SQLite
 
 使用MVP架构模式，将业务逻辑与UI、数据操作隔离开来，保持灵活性，拥抱变化。
+
+## 2. MVP快速开发框架
+
+- [Jude95 Beam ](https://github.com/Jude95/Beam)
+
+  一套基于MVP模式的快速开发框架。定义了一套开发规范。并提供了基于这套规范的Activity，Fragment，Presenter，Model等父类及控件和API等，完成APP开发过程中大量繁琐工作。
+
+- [nucleus](https://github.com/konmik/nucleus)
+
+  Nucleus is an Android library, which utilizes the Model-View-Presenter pattern to properly connect background tasks with visual parts of an application.

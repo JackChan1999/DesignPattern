@@ -4,7 +4,7 @@
 
 BorderFactory类中的工厂模式、Runtime类中的单例模式、java.io 类中的装饰器模式。顺便说一句，如果您真的对Java编码原则感兴趣，请阅读Joshua Bloch 的Effective Java，他编写过Java API。我个人最喜欢的关于面向对象设计模式的是Kathy Sierra的Head First Design Pattern(深入浅出设计模式)，以及其它的关于深入浅出面向对象分析和设计。这些书对编写更好的代码有很大帮助，充分利用各种面向对象和SOLID的设计模式。
 
-![img](https://mmbiz.qpic.cn/mmbiz/rOeDV5Q9ZqA2S1pvrxYffuel4Pz7qXicibTwtqXSg2ZqE7vT7N4ttX3VNH7A67uFycdFxaXZHXbuZRCu4FbrGteg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/oop1.webp)
 
 虽然学习设计模式(原则)最好的方法是现实中的例子和理解违反设计原则带来的不便，本文的宗旨是向那些没有接触过或正处于学习阶段的Java程序员介绍面向对象设计原则。我个人认为OOPS 和SOLID设计原则需要有文章清楚的介绍它们，在此我一定尽力做到这点，但现在请您准备浏览以下设计模式(原则)
 
@@ -12,7 +12,7 @@ BorderFactory类中的工厂模式、Runtime类中的单例模式、java.io 类�
 
 我们第一个面向对象设计原则是：DRY ，从名称可以看出DRY(don’t repeat yourself)意思是不写重复代码，而是抽象成可复用的代码块。如果您有两处以上相同的代码块，请考虑把它们抽象成一个单独的方法；或者您多次使用了硬编码的值，请把它们设置成公共常量。这种面向对象设计原则的优点是易于维护。重要的是不要滥用此原则，重复不是针对代码而是针对功能来说。它的意思是，如果您使用通用代码来验证OrderID和SSN，这并不意味着它们是相同的或者他们今后将保持不变。通过把通用代码用于实现两种不同的功能，或者您把这两种不同的功能密切地联系在一起；当您的OrderID格式改变时，您的SSN验证代码将会中断。所以要当心这种耦合，而且不要把彼此之间没有任何关系却类似的代码组合在一起。
 
-![img](https://mmbiz.qpic.cn/mmbiz/rOeDV5Q9ZqA2S1pvrxYffuel4Pz7qXicibPjtJ20LaxJuPEAPNZCicwaYMMm2t40icuSp6E8QnfPsMrGYAfcGPWPeA/0?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/oop2.gif)
 
 ## 封装经常修改的代码
 
@@ -44,7 +44,7 @@ Favor Composition over Inheritance
 
 如果可以的话，要优先使用组合而非继承。你们中的一些人可能为此争论，但我发现组合比继承更有灵活性。组合允许在运行时通过设置属性修改一个类的行为，通过使用多态即以接口的形式实现类之间的组合关系，并且为修改组合关系提供了灵活性。甚至 Effective Java也建议优先使用组合而非继承。
 
-![img](https://mmbiz.qpic.cn/mmbiz/rOeDV5Q9ZqA2S1pvrxYffuel4Pz7qXicibtG5fWvN1Yw200vkTco1TvSp08UxZoFrLWoqj3ibJCmdzXcqQmE2rlRw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![img](img/oop3.webp)
 
 ## 里氏替换原则
 
